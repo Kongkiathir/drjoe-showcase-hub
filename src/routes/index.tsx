@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect, useCallback } from "react";
 import heroAsset from "@/assets/drjoe-hero.jpg.asset.json";
 import keynoteAsset from "@/assets/drjoe-keynote.jpg.asset.json";
 import podcastAsset from "@/assets/drjoe-podcast.jpg.asset.json";
