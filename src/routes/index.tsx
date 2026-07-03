@@ -207,17 +207,23 @@ function Hero() {
           </span>
         </div>
         <p className="mono text-sm text-muted-foreground mb-4">
-          Dr.Joe · Ph.D. Computer Science
+          Dr. Joe · Nopparat Puttarattanamane
         </p>
         <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.9] mb-6">
           ดร.โจ<span className="italic text-primary">.</span>
         </h1>
         <p className="font-display italic text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
-          AI Researcher · Innovation Architect · Educator
+          Muay Thai Intelligence Architect · Sport Media Executive · Researcher
         </p>
-        <p className="max-w-xl text-base md:text-lg text-foreground/80 mb-10">
-          สถาปนิกด้าน Artificial Intelligence และนวัตกรรมดิจิทัล
-          ที่เชื่อมโลกงานวิจัยเข้ากับผลลัพธ์ทางธุรกิจและสังคมไทย
+        <p className="max-w-2xl text-base md:text-lg text-foreground/85 mb-4">
+          Dr. Joe is the Muay Thai Intelligence Architect, decoding Thailand's
+          combat heritage from archives into data, AI, sport technology, and
+          future intellectual property.
+        </p>
+        <p className="max-w-2xl text-sm md:text-base text-muted-foreground mb-10">
+          ดร.โจคือสถาปนิกแห่ง Muay Thai Intelligence
+          ผู้ถอดรหัสมรดกการต่อสู้ของไทยจากคลังอดีต สู่ข้อมูล ปัญญาประดิษฐ์
+          เทคโนโลยีกีฬา และทรัพย์สินทางปัญญาแห่งอนาคต
         </p>
         <div className="flex flex-wrap gap-3">
           <a
