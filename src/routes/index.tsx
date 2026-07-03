@@ -158,7 +158,7 @@ const STATS = [
 ];
 
 const LIGHTBOX_SLIDES = [
-  { src: heroImg, label: "Dr. Joe · MUAY O.G. Studio Portrait" },
+  ...HERO_SLIDES.map((s) => ({ src: s.src, label: s.label })),
   ...MOMENTS.map((m) => ({ src: m.src, label: m.label })),
 ];
 
