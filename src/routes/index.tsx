@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect, useCallback } from "react";
 import heroAsset from "@/assets/drjoe-hero.jpg.asset.json";
 import keynoteAsset from "@/assets/drjoe-keynote.jpg.asset.json";
 import podcastAsset from "@/assets/drjoe-podcast.jpg.asset.json";
@@ -143,13 +144,22 @@ const STATS = [
   { k: "20+", v: "บทความวิชาการ" },
 ];
 
+const LIGHTBOX_SLIDES = [
+  { src: heroImg, label: "Dr. Joe · MUAY O.G. Studio Portrait" },
+  ...MOMENTS.map((m) => ({ src: m.src, label: m.label })),
+];
+
 function Index() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const openLightbox = useCallback((i: number) => setLightboxIndex(i), []);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+
   return (
     <div className="dark min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero />
+      <Hero onOpen={() => openLightbox(0)} />
       <Expertise />
-      <Moments />
+      <Moments onOpen={(i) => openLightbox(i + 1)} />
       <About />
       <Skills />
       <Resume />
@@ -157,6 +167,12 @@ function Index() {
       <Contact />
       <BrandStatement />
       <Footer />
+      <Lightbox
+        slides={LIGHTBOX_SLIDES}
+        index={lightboxIndex}
+        onClose={closeLightbox}
+        onChange={setLightboxIndex}
+      />
     </div>
   );
 }
@@ -210,21 +226,27 @@ function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ onOpen }: { onOpen: () => void }) {
   return (
     <section id="hero" className="relative min-h-screen pt-16 overflow-hidden">
-      <div className="absolute inset-0">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label="Open hero image"
+        className="absolute inset-0 group cursor-zoom-in"
+      >
         <img
           src={heroImg}
           alt="Dr.Joe portrait"
           width={1600}
           height={1200}
-          className="w-full h-full object-cover opacity-45"
+          className="w-full h-full object-cover opacity-45 transition-opacity duration-500 group-hover:opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background pointer-events-none" />
+      </button>
 
-      <div className="relative container-editorial min-h-[calc(100vh-4rem)] flex flex-col justify-end pb-20 pt-32">
+      <div className="relative container-editorial min-h-[calc(100vh-4rem)] flex flex-col justify-end pb-20 pt-32 pointer-events-none">
+        <div className="pointer-events-auto">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-px bg-primary" />
           <span className="mono text-xs text-muted-foreground">
@@ -263,6 +285,7 @@ function Hero() {
           >
             Scroll ↓
           </a>
+        </div>
         </div>
       </div>
     </section>
@@ -323,7 +346,7 @@ function Expertise() {
   );
 }
 
-function Moments() {
+function Moments({ onOpen }: { onOpen: (i: number) => void }) {
   return (
     <section className="py-32 border-t border-border">
       <div className="container-editorial">
@@ -341,14 +364,21 @@ function Moments() {
                 m.tall ? "row-span-2 aspect-[3/4]" : "aspect-square"
               }`}
             >
-              <img
-                src={m.src}
-                alt={m.label}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
-              <figcaption className="absolute bottom-4 left-4 right-4 mono text-xs text-foreground/90">
+              <button
+                type="button"
+                onClick={() => onOpen(i)}
+                aria-label={`Open ${m.label}`}
+                className="absolute inset-0 w-full h-full cursor-zoom-in"
+              >
+                <img
+                  src={m.src}
+                  alt={m.label}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+              </button>
+              <figcaption className="absolute bottom-4 left-4 right-4 mono text-xs text-foreground/90 pointer-events-none">
                 <span className="text-primary">
                   {String(i + 1).padStart(2, "0")}
                 </span>{" "}
@@ -359,6 +389,116 @@ function Moments() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Lightbox({
+  slides,
+  index,
+  onClose,
+  onChange,
+}: {
+  slides: { src: string; label: string }[];
+  index: number | null;
+  onClose: () => void;
+  onChange: (i: number) => void;
+}) {
+  const isOpen = index !== null;
+
+  const go = useCallback(
+    (delta: number) => {
+      if (index === null) return;
+      const next = (index + delta + slides.length) % slides.length;
+      onChange(next);
+    },
+    [index, slides.length, onChange],
+  );
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowRight") go(1);
+      else if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen, onClose, go]);
+
+  if (!isOpen || index === null) return null;
+  const slide = slides[index];
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-md flex items-center justify-center animate-fade-in"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={slide.label}
+    >
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label="Close"
+        className="absolute top-6 right-6 mono text-xs px-4 py-2 border border-border rounded-full hover:border-primary hover:text-primary transition-colors bg-background/60"
+      >
+        Close ✕
+      </button>
+
+      <div className="absolute top-6 left-6 mono text-xs text-muted-foreground">
+        {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+      </div>
+
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          go(-1);
+        }}
+        aria-label="Previous image"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full border border-border bg-background/60 hover:border-primary hover:text-primary transition-colors flex items-center justify-center text-xl"
+      >
+        ←
+      </button>
+
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          go(1);
+        }}
+        aria-label="Next image"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full border border-border bg-background/60 hover:border-primary hover:text-primary transition-colors flex items-center justify-center text-xl"
+      >
+        →
+      </button>
+
+      <figure
+        className="relative max-w-[92vw] max-h-[86vh] flex flex-col items-center gap-4 animate-scale-in"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt={slide.label}
+          className="max-w-[92vw] max-h-[78vh] object-contain rounded-sm shadow-2xl"
+        />
+        <figcaption className="mono text-xs md:text-sm text-foreground/90 text-center">
+          <span className="text-primary">
+            {String(index + 1).padStart(2, "0")}
+          </span>{" "}
+          — {slide.label}
+        </figcaption>
+      </figure>
+    </div>
   );
 }
 
