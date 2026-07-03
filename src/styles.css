@@ -104,7 +104,10 @@
   color: var(--color-muted-foreground);
 }
 
-@utility grain::before {
+.grain {
+  position: relative;
+}
+.grain::before {
   content: "";
   position: absolute;
   inset: 0;
