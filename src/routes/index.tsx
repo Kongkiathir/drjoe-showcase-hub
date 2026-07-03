@@ -137,6 +137,7 @@ function Index() {
       <Resume />
       <Works />
       <Contact />
+      <BrandStatement />
       <Footer />
     </div>
   );
@@ -640,5 +641,42 @@ function Footer() {
         <div>Crafted in Bangkok · Made with intent.</div>
       </div>
     </footer>
+  );
+}
+
+function BrandStatement() {
+  return (
+    <section className="relative py-32 md:py-40 border-t border-border overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
+      <div className="container-editorial relative">
+        <div className="section-label mb-10 text-center">Final Statement · บทสรุป</div>
+        <div className="max-w-4xl mx-auto space-y-10 text-center">
+          <p className="font-serif text-3xl md:text-5xl leading-tight tracking-tight text-foreground">
+            Dr. Joe's work is not about looking back at Muay Thai with nostalgia. It is about using the past as raw material to build the future.
+          </p>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            งานของดร.โจไม่ใช่การมองอดีตของมวยไทยด้วยความคิดถึงเท่านั้น แต่คือการใช้อดีตเป็นวัตถุดิบในการสร้างอนาคต
+          </p>
+
+          <div className="h-px w-24 bg-primary/40 mx-auto" />
+
+          <div className="grid md:grid-cols-3 gap-6 mono text-sm uppercase tracking-widest text-foreground/80">
+            <div>From fight archives <br /><span className="text-primary">to structured data</span></div>
+            <div>From experience <br /><span className="text-primary">to intelligence</span></div>
+            <div>From Muay Thai heritage <br /><span className="text-primary">to global sport tech</span></div>
+          </div>
+          <p className="text-base text-muted-foreground leading-relaxed">
+            จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+          </p>
+
+          <div className="pt-8">
+            <p className="font-serif italic text-2xl md:text-3xl text-foreground">
+              This is the universe of Dr. Joe.
+            </p>
+            <p className="mt-2 text-muted-foreground">นี่คือจักรวาลของดร.โจ</p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
