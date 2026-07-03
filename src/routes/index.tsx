@@ -239,24 +239,51 @@ function Nav() {
   );
 }
 
-function Hero({ onOpen }: { onOpen: () => void }) {
+function Hero({ onOpen }: { onOpen: (i: number) => void }) {
+  const [slide, setSlide] = useState(0);
+  useEffect(() => {
+    const id = setInterval(
+      () => setSlide((s) => (s + 1) % HERO_SLIDES.length),
+      3000,
+    );
+    return () => clearInterval(id);
+  }, []);
   return (
     <section id="hero" className="relative min-h-screen pt-16 overflow-hidden">
       <button
         type="button"
-        onClick={onOpen}
+        onClick={() => onOpen(slide)}
         aria-label="Open hero image"
         className="absolute inset-0 group cursor-zoom-in"
       >
-        <img
-          src={heroImg}
-          alt="Dr.Joe portrait"
-          width={1600}
-          height={1200}
-          className="w-full h-full object-cover opacity-45 transition-opacity duration-500 group-hover:opacity-60"
-        />
+        {HERO_SLIDES.map((s, i) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={s.label}
+            width={1600}
+            height={1200}
+            style={{ objectPosition: s.position }}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
+              i === slide
+                ? "opacity-50 group-hover:opacity-65"
+                : "opacity-0"
+            }`}
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background pointer-events-none" />
+        <div className="absolute bottom-6 right-6 flex gap-1.5 pointer-events-none">
+          {HERO_SLIDES.map((_, i) => (
+            <span
+              key={i}
+              className={`h-1 rounded-full transition-all duration-500 ${
+                i === slide ? "w-8 bg-primary" : "w-3 bg-foreground/30"
+              }`}
+            />
+          ))}
+        </div>
       </button>
+
 
       <div className="relative container-editorial min-h-[calc(100vh-4rem)] flex flex-col justify-end pb-20 pt-32 pointer-events-none">
         <div className="pointer-events-auto">
