@@ -77,19 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dr.Joe — Portfolio · AI, Innovation & Digital Craft" },
+      { title: "Dr. Joe — Muay Thai Intelligence Architect · drjoe.site" },
       {
         name: "description",
         content:
-          "เว็บไซต์แสดงตัวตนและผลงานของ ดร.โจ — ผู้เชี่ยวชาญด้าน AI, Innovation และเทคโนโลยีดิจิทัลขั้นสูง",
+          "Dr. Joe (Nopparat Puttarattanamane) — sport media executive, Muay Thai innovator, and researcher decoding Thailand's combat heritage into data, AI, sport technology, and digital IP.",
       },
-      { property: "og:title", content: "Dr.Joe — Portfolio" },
+      { property: "og:title", content: "Dr. Joe — Muay Thai Intelligence Architect" },
       {
         property: "og:description",
         content:
-          "ผลงาน ประวัติ และความเชี่ยวชาญของ ดร.โจ ผู้บุกเบิกด้าน AI และนวัตกรรมเพื่อสังคม",
+          "30+ ปีในวงการโทรทัศน์ ภาพยนตร์ THAI FIGHT, IDOL FIGHT, MUAY O.G. — ผลักดันมวยไทยสู่ข้อมูล ปัญญาประดิษฐ์ และทรัพย์สินทางปัญญาดิจิทัล",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
