@@ -170,9 +170,9 @@ function Index() {
   return (
     <div className="dark min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero onOpen={() => openLightbox(0)} />
+      <Hero onOpen={(i) => openLightbox(i)} />
       <Expertise />
-      <Moments onOpen={(i) => openLightbox(i + 1)} />
+      <Moments onOpen={(i) => openLightbox(i + HERO_SLIDES.length)} />
       <About />
       <Skills />
       <Resume />
