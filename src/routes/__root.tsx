@@ -105,12 +105,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Decoding Thailand's Muay Thai heritage into data, AI, and sport intelligence.",
       },
-      { name: "description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง จากประสบการณ์ สู่ปัญญา จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
-This is the universe of Dr. Joe. นี่คือจักรวาลของดร.โจ" },
-      { property: "og:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง จากประสบการณ์ สู่ปัญญา จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
-This is the universe of Dr. Joe. นี่คือจักรวาลของดร.โจ" },
-      { name: "twitter:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง จากประสบการณ์ สู่ปัญญา จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
-This is the universe of Dr. Joe. นี่คือจักรวาลของดร.โจ" },
+      { name: "description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+This is the universe of Dr. Joe. · นี่คือจักรวาลของดร.โจ" },
+      { property: "og:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+This is the universe of Dr. Joe. · นี่คือจักรวาลของดร.โจ" },
+      { name: "twitter:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+This is the universe of Dr. Joe. · นี่คือจักรวาลของดร.โจ" },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/uQ0etfvMzkM18fhrnWTOMjpSQSo1/social-images/social-1783060386785-279FFDC2-CC40-49DC-A950-70340E0E25C5.webp" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/uQ0etfvMzkM18fhrnWTOMjpSQSo1/social-images/social-1783060386785-279FFDC2-CC40-49DC-A950-70340E0E25C5.webp" },
     ],
