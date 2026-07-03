@@ -144,13 +144,22 @@ const STATS = [
   { k: "20+", v: "บทความวิชาการ" },
 ];
 
+const LIGHTBOX_SLIDES = [
+  { src: heroImg, label: "Dr. Joe · MUAY O.G. Studio Portrait" },
+  ...MOMENTS.map((m) => ({ src: m.src, label: m.label })),
+];
+
 function Index() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const openLightbox = useCallback((i: number) => setLightboxIndex(i), []);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+
   return (
     <div className="dark min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero />
+      <Hero onOpen={() => openLightbox(0)} />
       <Expertise />
-      <Moments />
+      <Moments onOpen={(i) => openLightbox(i + 1)} />
       <About />
       <Skills />
       <Resume />
@@ -158,6 +167,12 @@ function Index() {
       <Contact />
       <BrandStatement />
       <Footer />
+      <Lightbox
+        slides={LIGHTBOX_SLIDES}
+        index={lightboxIndex}
+        onClose={closeLightbox}
+        onChange={setLightboxIndex}
+      />
     </div>
   );
 }
