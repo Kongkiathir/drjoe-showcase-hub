@@ -55,12 +55,17 @@ const EXPERTISE = [
   },
 ];
 
+// Moments — one signature frame per pillar of Dr. Joe's practice
 const MOMENTS = [
-  { src: keynoteImg, label: "KMITL Family · Virtual Stage Production", tall: true },
-  { src: tvImg, label: "TV Appearance · GMM25 Broadcast" },
-  { src: thaifightImg, label: "SAMUI FIGHT 2017 · THAI FIGHT Series" },
-  { src: podcastImg, label: "MUAY O.G. · Podcast Studio Session", tall: true },
+  { src: thaifightImg, label: "SAMUI FIGHT 2017 · THAI FIGHT Ringside", tall: true },
+  { src: tvImg, label: "GMM25 · Prime-time Broadcast Panel" },
+  { src: keynoteImg, label: "KMITL Family · Virtual Stage Keynote" },
+  { src: onsetImg, label: "Directing · On-Set Production", tall: true },
+  { src: talkshowImg, label: "Long-form TV Interview · Yellow Set" },
+  { src: muayogImg, label: "MUAY O.G. · Crew & Brand Colors" },
+  { src: portraitImg, label: "Between Takes · Studio Portrait" },
 ];
+
 
 const SKILLS = [
   { name: "Generative AI & LLM", pct: 98 },
