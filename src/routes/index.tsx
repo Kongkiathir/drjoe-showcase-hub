@@ -174,6 +174,12 @@ function Nav() {
         </nav>
         <div className="flex items-center gap-2">
           <Link
+            to="/gallery"
+            className="hidden sm:inline-block mono text-xs px-3 py-2 border border-border rounded-full hover:border-foreground transition-colors"
+          >
+            Gallery
+          </Link>
+          <Link
             to="/timeline"
             className="hidden sm:inline-block mono text-xs px-3 py-2 border border-border rounded-full hover:border-foreground transition-colors"
           >
