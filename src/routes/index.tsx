@@ -48,10 +48,10 @@ const EXPERTISE = [
 ];
 
 const MOMENTS = [
-  { src: keynoteImg, label: "Keynote · AI Summit 2025", tall: true },
-  { src: vrImg, label: "R&D · VR / XR Lab" },
-  { src: awardImg, label: "National Innovation Award" },
-  { src: droneImg, label: "Autonomous Systems · KDX Series", tall: true },
+  { src: keynoteImg, label: "KMITL Family · Virtual Stage Production", tall: true },
+  { src: tvImg, label: "TV Appearance · GMM25 Broadcast" },
+  { src: thaifightImg, label: "SAMUI FIGHT 2017 · THAI FIGHT Series" },
+  { src: podcastImg, label: "MUAY O.G. · Podcast Studio Session", tall: true },
 ];
 
 const SKILLS = [
