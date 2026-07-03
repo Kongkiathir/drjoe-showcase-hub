@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-drjoe.jpg";
 import keynoteImg from "@/assets/moment-keynote.jpg";
 import vrImg from "@/assets/moment-vr.jpg";
@@ -166,12 +166,20 @@ function Nav() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="mono text-xs px-3 py-2 border border-border rounded-full hover:border-primary hover:text-primary transition-colors"
-        >
-          Get in touch →
-        </a>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/timeline"
+            className="hidden sm:inline-block mono text-xs px-3 py-2 border border-border rounded-full hover:border-foreground transition-colors"
+          >
+            CV / Timeline
+          </Link>
+          <a
+            href="#contact"
+            className="mono text-xs px-3 py-2 border border-border rounded-full hover:border-primary hover:text-primary transition-colors"
+          >
+            Get in touch →
+          </a>
+        </div>
       </div>
     </header>
   );
