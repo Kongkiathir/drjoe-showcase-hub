@@ -137,6 +137,7 @@ function Index() {
       <Resume />
       <Works />
       <Contact />
+      <BrandStatement />
       <Footer />
     </div>
   );
