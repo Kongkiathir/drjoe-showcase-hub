@@ -89,7 +89,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Dr. Joe, Nopparat Puttarattanamane, Muay Thai Intelligence, MUAY O.G., Originals Studio, Muay Thai Archives, THAI FIGHT, IDOL FIGHT, IDOL LEAGUE, Muay Thai Data, Muay Thai AI, Sport Technology, Sport Intelligence, Muay Thai 6.0, ดร.โจ, นพรัตน์ พุทธรัตนมณี, ฐานข้อมูลมวยไทย, AI มวยไทย, เทคโนโลยีกีฬา, มวยไทย 6.0",
       },
       { name: "author", content: "Dr. Joe (Nopparat Puttarattanamane)" },
-      { property: "og:title", content: "Dr. Joe | Muay Thai Intelligence Architect" },
+      { property: "og:title", content: "Dr. Joe | Muay Thai Intelligence Architect · ดร.โจ | สถาปนิกแห่ง Muay Thai Intelligence" },
       {
         property: "og:description",
         content:
@@ -99,12 +99,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "drjoe.site" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Dr. Joe | Muay Thai Intelligence Architect" },
+      { name: "twitter:title", content: "Dr. Joe | Muay Thai Intelligence Architect · ดร.โจ | สถาปนิกแห่ง Muay Thai Intelligence" },
       {
         name: "twitter:description",
         content:
           "Decoding Thailand's Muay Thai heritage into data, AI, and sport intelligence.",
       },
+      { name: "description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง จากประสบการณ์ สู่ปัญญา จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+This is the universe of Dr. Joe. นี่คือจักรวาลของดร.โจ" },
+      { property: "og:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง จากประสบการณ์ สู่ปัญญา จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+This is the universe of Dr. Joe. นี่คือจักรวาลของดร.โจ" },
+      { name: "twitter:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง จากประสบการณ์ สู่ปัญญา จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก
+This is the universe of Dr. Joe. นี่คือจักรวาลของดร.โจ" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/uQ0etfvMzkM18fhrnWTOMjpSQSo1/social-images/social-1783060386785-279FFDC2-CC40-49DC-A950-70340E0E25C5.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/uQ0etfvMzkM18fhrnWTOMjpSQSo1/social-images/social-1783060386785-279FFDC2-CC40-49DC-A950-70340E0E25C5.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
