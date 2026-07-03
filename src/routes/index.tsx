@@ -380,7 +380,8 @@ function Skills() {
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4 space-y-6">
             <InfoRow k="Location" v="Bangkok, Thailand" />
-            <InfoRow k="Email" v="hello@drjoe.site" />
+            <InfoRow k="Email" v="joethaifight@gmail.com" />
+            <InfoRow k="Phone" v="089-453-5252" />
             <InfoRow k="Focus" v="AI · Innovation · Education" />
             <InfoRow k="Languages" v="ไทย · English · 中文 (basic)" />
 
