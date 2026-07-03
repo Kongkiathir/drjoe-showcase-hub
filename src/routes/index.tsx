@@ -4,11 +4,19 @@ import keynoteAsset from "@/assets/drjoe-keynote.jpg.asset.json";
 import podcastAsset from "@/assets/drjoe-podcast.jpg.asset.json";
 import thaifightAsset from "@/assets/drjoe-thaifight.jpg.asset.json";
 import tvAsset from "@/assets/drjoe-tv.jpg.asset.json";
-const heroImg = heroAsset.url;
+import onsetAsset from "@/assets/drjoe-onset.jpg.asset.json";
+import muayogAsset from "@/assets/drjoe-muayog.jpg.asset.json";
+import talkshowAsset from "@/assets/drjoe-talkshow.jpg.asset.json";
+// Hero uses the podcast frame — its violet studio lighting matches the site accent.
+const heroImg = podcastAsset.url;
+const portraitImg = heroAsset.url;
 const keynoteImg = keynoteAsset.url;
-const podcastImg = podcastAsset.url;
 const thaifightImg = thaifightAsset.url;
 const tvImg = tvAsset.url;
+const onsetImg = onsetAsset.url;
+const muayogImg = muayogAsset.url;
+const talkshowImg = talkshowAsset.url;
+
 
 export const Route = createFileRoute("/")({
   component: Index,
