@@ -226,21 +226,27 @@ function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ onOpen }: { onOpen: () => void }) {
   return (
     <section id="hero" className="relative min-h-screen pt-16 overflow-hidden">
-      <div className="absolute inset-0">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label="Open hero image"
+        className="absolute inset-0 group cursor-zoom-in"
+      >
         <img
           src={heroImg}
           alt="Dr.Joe portrait"
           width={1600}
           height={1200}
-          className="w-full h-full object-cover opacity-45"
+          className="w-full h-full object-cover opacity-45 transition-opacity duration-500 group-hover:opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background pointer-events-none" />
+      </button>
 
-      <div className="relative container-editorial min-h-[calc(100vh-4rem)] flex flex-col justify-end pb-20 pt-32">
+      <div className="relative container-editorial min-h-[calc(100vh-4rem)] flex flex-col justify-end pb-20 pt-32 pointer-events-none">
+        <div className="pointer-events-auto">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-px bg-primary" />
           <span className="mono text-xs text-muted-foreground">
