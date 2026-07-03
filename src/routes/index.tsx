@@ -8,8 +8,21 @@ import tvAsset from "@/assets/drjoe-tv.jpg.asset.json";
 import onsetAsset from "@/assets/drjoe-onset.jpg.asset.json";
 import muayogAsset from "@/assets/drjoe-muayog.jpg.asset.json";
 import talkshowAsset from "@/assets/drjoe-talkshow.jpg.asset.json";
-// Hero uses the podcast frame — its violet studio lighting matches the site accent.
-const heroImg = podcastAsset.url;
+import heroOnsetAsset from "@/assets/drjoe-hero-onset.jpg.asset.json";
+import heroRingAsset from "@/assets/drjoe-hero-thaifight-ring.jpg.asset.json";
+import heroCommentaryAsset from "@/assets/drjoe-hero-commentary.jpg.asset.json";
+import heroPanelAsset from "@/assets/drjoe-hero-panel.jpg.asset.json";
+import heroPortraitAsset from "@/assets/drjoe-hero-portrait.jpg.asset.json";
+
+// Hero rotates through five signature frames every 3 seconds.
+const HERO_SLIDES = [
+  { src: heroPortraitAsset.url, label: "Dr. Joe · Studio Portrait", position: "center 25%" },
+  { src: heroOnsetAsset.url, label: "Dr. Joe · On Set Directing", position: "center 30%" },
+  { src: heroRingAsset.url, label: "Dr. Joe · THAI FIGHT Ringside", position: "center 25%" },
+  { src: heroCommentaryAsset.url, label: "Dr. Joe · Live Commentary", position: "center 30%" },
+  { src: heroPanelAsset.url, label: "Dr. Joe · Keynote Panel", position: "center 25%" },
+];
+const heroImg = HERO_SLIDES[0].src;
 const portraitImg = heroAsset.url;
 const keynoteImg = keynoteAsset.url;
 const thaifightImg = thaifightAsset.url;
