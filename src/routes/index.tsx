@@ -346,7 +346,7 @@ function Expertise() {
   );
 }
 
-function Moments() {
+function Moments({ onOpen }: { onOpen: (i: number) => void }) {
   return (
     <section className="py-32 border-t border-border">
       <div className="container-editorial">
@@ -364,14 +364,21 @@ function Moments() {
                 m.tall ? "row-span-2 aspect-[3/4]" : "aspect-square"
               }`}
             >
-              <img
-                src={m.src}
-                alt={m.label}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
-              <figcaption className="absolute bottom-4 left-4 right-4 mono text-xs text-foreground/90">
+              <button
+                type="button"
+                onClick={() => onOpen(i)}
+                aria-label={`Open ${m.label}`}
+                className="absolute inset-0 w-full h-full cursor-zoom-in"
+              >
+                <img
+                  src={m.src}
+                  alt={m.label}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+              </button>
+              <figcaption className="absolute bottom-4 left-4 right-4 mono text-xs text-foreground/90 pointer-events-none">
                 <span className="text-primary">
                   {String(i + 1).padStart(2, "0")}
                 </span>{" "}
@@ -382,6 +389,116 @@ function Moments() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Lightbox({
+  slides,
+  index,
+  onClose,
+  onChange,
+}: {
+  slides: { src: string; label: string }[];
+  index: number | null;
+  onClose: () => void;
+  onChange: (i: number) => void;
+}) {
+  const isOpen = index !== null;
+
+  const go = useCallback(
+    (delta: number) => {
+      if (index === null) return;
+      const next = (index + delta + slides.length) % slides.length;
+      onChange(next);
+    },
+    [index, slides.length, onChange],
+  );
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowRight") go(1);
+      else if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen, onClose, go]);
+
+  if (!isOpen || index === null) return null;
+  const slide = slides[index];
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-md flex items-center justify-center animate-fade-in"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={slide.label}
+    >
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label="Close"
+        className="absolute top-6 right-6 mono text-xs px-4 py-2 border border-border rounded-full hover:border-primary hover:text-primary transition-colors bg-background/60"
+      >
+        Close ✕
+      </button>
+
+      <div className="absolute top-6 left-6 mono text-xs text-muted-foreground">
+        {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+      </div>
+
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          go(-1);
+        }}
+        aria-label="Previous image"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full border border-border bg-background/60 hover:border-primary hover:text-primary transition-colors flex items-center justify-center text-xl"
+      >
+        ←
+      </button>
+
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          go(1);
+        }}
+        aria-label="Next image"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full border border-border bg-background/60 hover:border-primary hover:text-primary transition-colors flex items-center justify-center text-xl"
+      >
+        →
+      </button>
+
+      <figure
+        className="relative max-w-[92vw] max-h-[86vh] flex flex-col items-center gap-4 animate-scale-in"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt={slide.label}
+          className="max-w-[92vw] max-h-[78vh] object-contain rounded-sm shadow-2xl"
+        />
+        <figcaption className="mono text-xs md:text-sm text-foreground/90 text-center">
+          <span className="text-primary">
+            {String(index + 1).padStart(2, "0")}
+          </span>{" "}
+          — {slide.label}
+        </figcaption>
+      </figure>
+    </div>
   );
 }
 
