@@ -286,6 +286,7 @@ function Hero({ onOpen }: { onOpen: () => void }) {
             Scroll ↓
           </a>
         </div>
+        </div>
       </div>
     </section>
   );
