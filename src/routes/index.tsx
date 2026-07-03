@@ -342,28 +342,36 @@ function About() {
     <section id="about" className="py-32 border-t border-border">
       <div className="container-editorial grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-5">
-          <SectionHeader index="02" label="About" title="เกี่ยวกับ ดร.โจ" />
+          <SectionHeader
+            index="02"
+            label="About"
+            title="เกี่ยวกับ ดร.โจ"
+            sub="Nopparat Puttarattanamane — นพรัตน์ พุทธรัตนมณี"
+          />
         </div>
         <div className="lg:col-span-7 space-y-6 text-foreground/85 leading-relaxed">
           <p className="text-xl font-display italic text-primary">
-            "เทคโนโลยีที่ดีที่สุด คือเทคโนโลยีที่มองไม่เห็น
-            แต่เปลี่ยนชีวิตผู้คนได้จริง"
+            "From fight archives to data, AI, and future intellectual
+            property — decoding Thailand's combat heritage."
           </p>
           <p>
-            ดร.โจ คือนักวิจัยและนักปฏิบัติด้านปัญญาประดิษฐ์
-            ผู้มีบทบาทสำคัญในการผลักดันการประยุกต์ใช้ AI ให้เกิดผลลัพธ์
-            เชิงประจักษ์ในภาครัฐ ภาคเอกชน และวงการการศึกษาไทย
+            Dr. Joe, Nopparat Puttarattanamane, is a Thai sport media
+            executive, Muay Thai innovator, researcher, and founder of
+            Muay Thai Intelligence initiatives. With more than 30 years of
+            experience across television, film, live sport production,
+            THAI FIGHT, IDOL FIGHT, IDOL LEAGUE, MUAY O.G., and Muay Thai
+            Archives, he is leading the transformation of Muay Thai from
+            fight archives into data, AI, sport technology, and digital
+            intellectual property.
           </p>
-          <p>
-            ด้วยประสบการณ์กว่า 20 ปีในสายเทคโนโลยี
-            เขาได้ก่อตั้งบริษัทสตาร์ทอัพหลายแห่ง
-            เป็นที่ปรึกษาให้กับองค์กรระดับ SET50
-            และเป็นผู้ออกแบบหลักสูตรด้าน AI ระดับผู้บริหาร
-            ให้กับสถาบันชั้นนำของประเทศ
-          </p>
-          <p>
-            งานที่เขาให้ความสำคัญที่สุด คือการถ่ายทอดความรู้สู่คนรุ่นใหม่
-            ผ่านโครงการ "AI for All" ที่ได้อบรมเยาวชนไทยกว่า 5,000 คน
+          <p className="text-muted-foreground">
+            ดร.โจ นพรัตน์ พุทธรัตนมณี คือผู้บริหารด้านสื่อกีฬา
+            นักสร้างสรรค์นวัตกรรมมวยไทย นักวิจัย และผู้ริเริ่มแนวคิด
+            Muay Thai Intelligence ด้วยประสบการณ์มากกว่า 30 ปีในวงการโทรทัศน์
+            ภาพยนตร์ การผลิตกีฬาสด THAI FIGHT, IDOL FIGHT, IDOL LEAGUE,
+            MUAY O.G. และ Muay Thai Archives
+            เขากำลังผลักดันการเปลี่ยนมวยไทยจากคลังไฟต์ในอดีต ไปสู่ข้อมูล
+            ปัญญาประดิษฐ์ เทคโนโลยีกีฬา และทรัพย์สินทางปัญญาดิจิทัล
           </p>
 
           <div className="grid grid-cols-2 gap-px bg-border mt-12">
