@@ -1,9 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hero-drjoe.jpg";
-import keynoteImg from "@/assets/moment-keynote.jpg";
-import vrImg from "@/assets/moment-vr.jpg";
-import awardImg from "@/assets/moment-award.jpg";
-import droneImg from "@/assets/moment-drone.jpg";
+import heroAsset from "@/assets/drjoe-hero.jpg.asset.json";
+import keynoteAsset from "@/assets/drjoe-keynote.jpg.asset.json";
+import podcastAsset from "@/assets/drjoe-podcast.jpg.asset.json";
+import thaifightAsset from "@/assets/drjoe-thaifight.jpg.asset.json";
+import tvAsset from "@/assets/drjoe-tv.jpg.asset.json";
+const heroImg = heroAsset.url;
+const keynoteImg = keynoteAsset.url;
+const podcastImg = podcastAsset.url;
+const thaifightImg = thaifightAsset.url;
+const tvImg = tvAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
