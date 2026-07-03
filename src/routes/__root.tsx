@@ -77,20 +77,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dr. Joe — Muay Thai Intelligence Architect · drjoe.site" },
+      { title: "Dr. Joe | Muay Thai Intelligence Architect · ดร.โจ | สถาปนิกแห่ง Muay Thai Intelligence" },
       {
         name: "description",
         content:
-          "Dr. Joe (Nopparat Puttarattanamane) — sport media executive, Muay Thai innovator, and researcher decoding Thailand's combat heritage into data, AI, sport technology, and digital IP.",
+          "Official website of Dr. Joe, Nopparat Puttarattanamane — Thai sport media executive, Muay Thai innovator, researcher, founder of MUAY O.G., Originals Studio, IDOL FIGHT, IDOL LEAGUE, and Muay Thai Intelligence initiatives. เว็บไซต์ทางการของดร.โจ นพรัตน์ พุทธรัตนมณี — ผู้บริหารด้านสื่อกีฬา นักสร้างสรรค์นวัตกรรมมวยไทย ผู้ริเริ่มแนวคิด Muay Thai Intelligence",
       },
-      { property: "og:title", content: "Dr. Joe — Muay Thai Intelligence Architect" },
+      {
+        name: "keywords",
+        content:
+          "Dr. Joe, Nopparat Puttarattanamane, Muay Thai Intelligence, MUAY O.G., Originals Studio, Muay Thai Archives, THAI FIGHT, IDOL FIGHT, IDOL LEAGUE, Muay Thai Data, Muay Thai AI, Sport Technology, Sport Intelligence, Muay Thai 6.0, ดร.โจ, นพรัตน์ พุทธรัตนมณี, ฐานข้อมูลมวยไทย, AI มวยไทย, เทคโนโลยีกีฬา, มวยไทย 6.0",
+      },
+      { name: "author", content: "Dr. Joe (Nopparat Puttarattanamane)" },
+      { property: "og:title", content: "Dr. Joe | Muay Thai Intelligence Architect" },
       {
         property: "og:description",
         content:
-          "30+ ปีในวงการโทรทัศน์ ภาพยนตร์ THAI FIGHT, IDOL FIGHT, MUAY O.G. — ผลักดันมวยไทยสู่ข้อมูล ปัญญาประดิษฐ์ และทรัพย์สินทางปัญญาดิจิทัล",
+          "Sport media executive, Muay Thai innovator, and researcher — decoding Thailand's combat heritage into data, AI, sport technology, and digital IP. ผู้บริหารสื่อกีฬาและผู้ริเริ่มแนวคิด Muay Thai Intelligence",
       },
       { property: "og:type", content: "profile" },
+      { property: "og:site_name", content: "drjoe.site" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dr. Joe | Muay Thai Intelligence Architect" },
+      {
+        name: "twitter:description",
+        content:
+          "Decoding Thailand's Muay Thai heritage into data, AI, and sport intelligence.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
