@@ -380,7 +380,8 @@ function Skills() {
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4 space-y-6">
             <InfoRow k="Location" v="Bangkok, Thailand" />
-            <InfoRow k="Email" v="hello@drjoe.site" />
+            <InfoRow k="Email" v="joethaifight@gmail.com" />
+            <InfoRow k="Phone" v="089-453-5252" />
             <InfoRow k="Focus" v="AI · Innovation · Education" />
             <InfoRow k="Languages" v="ไทย · English · 中文 (basic)" />
 
@@ -522,6 +523,17 @@ function Works() {
   );
 }
 
+const COLLAB_AREAS = [
+  { en: "Government & policy initiatives", th: "โครงการภาครัฐและนโยบายระดับประเทศ" },
+  { en: "Universities & research institutions", th: "มหาวิทยาลัยและสถาบันวิจัย" },
+  { en: "Sport technology & AI companies", th: "บริษัท Sport Technology และปัญญาประดิษฐ์" },
+  { en: "Media & broadcast platforms", th: "สื่อและแพลตฟอร์มการถ่ายทอดสด" },
+  { en: "Muay Thai orgs, gyms & promoters", th: "องค์กรมวยไทย ค่ายมวย และโปรโมเตอร์" },
+  { en: "Game, animation & digital studios", th: "สตูดิโอเกม แอนิเมชัน และคอนเทนต์ดิจิทัล" },
+  { en: "Cultural & creative economy partners", th: "พันธมิตรด้านวัฒนธรรมและเศรษฐกิจสร้างสรรค์" },
+  { en: "Investors & strategic partners", th: "นักลงทุนและพันธมิตรเชิงยุทธศาสตร์" },
+];
+
 function Contact() {
   return (
     <section
@@ -529,37 +541,69 @@ function Contact() {
       className="py-32 border-t border-border relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
-      <div className="container-editorial relative text-center">
-        <div className="section-label mb-6">§ 06 — Contact</div>
-        <h2 className="font-display text-5xl md:text-7xl leading-tight max-w-4xl mx-auto mb-8">
-          มาสร้างสิ่งใหม่<span className="italic text-primary">ด้วยกัน</span>
-        </h2>
-        <p className="text-muted-foreground max-w-xl mx-auto mb-12">
-          เปิดรับการบรรยาย งานที่ปรึกษา ความร่วมมือด้านงานวิจัย
-          และโครงการที่สร้างผลกระทบต่อสังคม
-        </p>
-        <a
-          href="mailto:hello@drjoe.site"
-          className="inline-block font-display italic text-3xl md:text-5xl text-primary hover:opacity-80 transition"
-        >
-          hello@drjoe.site →
-        </a>
-        <div className="flex justify-center gap-6 mt-12 mono text-xs text-muted-foreground">
-          <a href="#" className="hover:text-foreground">
-            LinkedIn
-          </a>
-          <span>·</span>
-          <a href="#" className="hover:text-foreground">
-            X / Twitter
-          </a>
-          <span>·</span>
-          <a href="#" className="hover:text-foreground">
-            Google Scholar
-          </a>
-          <span>·</span>
-          <a href="#" className="hover:text-foreground">
-            YouTube
-          </a>
+      <div className="container-editorial relative">
+        <SectionHeader
+          index="06"
+          label="Contact & Collaboration"
+          title="Work with Dr. Joe · ร่วมงานกับดร.โจ"
+          sub="Dr. Joe welcomes collaboration with organizations and partners who share the vision of advancing Muay Thai through data, technology, media, culture, education, and intellectual property. — ดร.โจเปิดรับความร่วมมือกับองค์กรและพันธมิตรที่มีวิสัยทัศน์ร่วมกันในการยกระดับมวยไทยผ่านข้อมูล เทคโนโลยี สื่อ วัฒนธรรม การศึกษา และทรัพย์สินทางปัญญา"
+        />
+
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Collaboration areas */}
+          <div className="lg:col-span-7">
+            <div className="section-label mb-6">Collaboration Areas · ขอบเขตความร่วมมือ</div>
+            <div className="grid sm:grid-cols-2 gap-px bg-border">
+              {COLLAB_AREAS.map((c, i) => (
+                <div key={c.en} className="bg-background p-6">
+                  <div className="mono text-[10px] text-primary mb-2">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="font-display text-lg mb-1">{c.en}</div>
+                  <div className="text-xs text-muted-foreground">{c.th}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact details */}
+          <div className="lg:col-span-5 space-y-8">
+            <div>
+              <div className="section-label mb-4">Direct Contact · ติดต่อโดยตรง</div>
+              <a
+                href="mailto:JOETHAIFIGHT@GMAIL.COM"
+                className="block font-display italic text-2xl md:text-3xl text-primary hover:opacity-80 transition break-all"
+              >
+                JOETHAIFIGHT@GMAIL.COM →
+              </a>
+              <a
+                href="tel:+66894535252"
+                className="mono text-sm text-foreground/80 hover:text-primary transition mt-3 inline-block"
+              >
+                ☎ 089-453-5252
+              </a>
+            </div>
+
+            <div className="space-y-3 pt-6 border-t border-border">
+              <InfoRow k="Website" v="drjoe.site" />
+              <InfoRow k="YouTube" v="MUAY O.G." />
+              <InfoRow k="Podcast" v="Muay Thai Intelligence" />
+            </div>
+
+            <div className="pt-6">
+              <div className="section-label mb-4">Follow</div>
+              <div className="flex flex-wrap gap-2">
+                {["YouTube · MUAY O.G.", "Podcast · Muay Thai Intelligence", "drjoe.site"].map((s) => (
+                  <span
+                    key={s}
+                    className="mono text-xs px-3 py-1.5 border border-border rounded-full"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
