@@ -91,7 +91,8 @@ function AdminPage() {
 
       const { data: imgs } = await supabase
         .from("gallery_images")
-        .select("id,url,storage_path,caption,category,created_at")
+        .select("id,url,storage_path,caption,category,created_at,sort_order")
+        .order("sort_order", { ascending: true })
         .order("created_at", { ascending: false });
       setImages(imgs ?? []);
     })();
