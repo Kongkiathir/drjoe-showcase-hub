@@ -173,6 +173,7 @@ function SignedInPanel({
   onSignOut: () => void | Promise<void>;
   onGoAdmin: () => void;
 }) {
+  const [showChange, setShowChange] = useState(false);
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -242,54 +243,66 @@ function SignedInPanel({
           <p className="mt-1 font-mono text-xs text-muted-foreground">{email}</p>
         </div>
 
-        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
-          <h2 className="text-sm font-semibold">เปลี่ยนรหัสผ่าน</h2>
-          <form onSubmit={submit} className="space-y-3">
-            <input
-              type="password"
-              required
-              autoComplete="current-password"
-              placeholder="รหัสผ่านปัจจุบัน"
-              value={current}
-              onChange={(e) => setCurrent(e.target.value)}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            />
-            <input
-              type="password"
-              required
-              minLength={8}
-              autoComplete="new-password"
-              placeholder="รหัสผ่านใหม่ (อย่างน้อย 8 ตัว)"
-              value={next}
-              onChange={(e) => setNext(e.target.value)}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            />
-            <input
-              type="password"
-              required
-              minLength={8}
-              autoComplete="new-password"
-              placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-            />
-            <button
-              type="submit"
-              disabled={busy}
-              className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
-            >
-              {busy ? "กำลังบันทึก..." : "บันทึกรหัสผ่านใหม่"}
-            </button>
-          </form>
-          {msg && (
-            <p
-              className={`text-xs ${
-                msg.kind === "ok" ? "text-primary" : "text-destructive"
-              }`}
-            >
-              {msg.text}
-            </p>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <button
+            type="button"
+            onClick={() => setShowChange((v) => !v)}
+            className="flex w-full items-center justify-between text-sm font-semibold"
+          >
+            <span>เปลี่ยนรหัสผ่าน <span className="ml-1 text-xs font-normal text-muted-foreground">(ไม่บังคับ)</span></span>
+            <span className="text-xs text-muted-foreground">{showChange ? "▾" : "▸"}</span>
+          </button>
+
+          {showChange && (
+            <div className="mt-4 space-y-3">
+              <form onSubmit={submit} className="space-y-3">
+                <input
+                  type="password"
+                  required
+                  autoComplete="current-password"
+                  placeholder="รหัสผ่านปัจจุบัน"
+                  value={current}
+                  onChange={(e) => setCurrent(e.target.value)}
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+                <input
+                  type="password"
+                  required
+                  minLength={8}
+                  autoComplete="new-password"
+                  placeholder="รหัสผ่านใหม่ (อย่างน้อย 8 ตัว)"
+                  value={next}
+                  onChange={(e) => setNext(e.target.value)}
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+                <input
+                  type="password"
+                  required
+                  minLength={8}
+                  autoComplete="new-password"
+                  placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง"
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
+                >
+                  {busy ? "กำลังบันทึก..." : "บันทึกรหัสผ่านใหม่"}
+                </button>
+              </form>
+              {msg && (
+                <p
+                  className={`text-xs ${
+                    msg.kind === "ok" ? "text-primary" : "text-destructive"
+                  }`}
+                >
+                  {msg.text}
+                </p>
+              )}
+            </div>
           )}
         </div>
 
