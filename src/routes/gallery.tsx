@@ -88,6 +88,16 @@ import upTfVipFight from "@/assets/gallery-tf-vip-fight.jpg.asset.json";
 import upTfPanelMic from "@/assets/gallery-tf-panel-mic.jpg.asset.json";
 import upTfOvControl from "@/assets/gallery-tf-ov-control.jpg.asset.json";
 import upTfNarathiwatRain from "@/assets/gallery-tf-narathiwat-rain.jpg.asset.json";
+import upLecturePanel from "@/assets/gallery-lecture-panel.jpg.asset.json";
+import upBoardroomGroup from "@/assets/gallery-boardroom-group.jpg.asset.json";
+import upSeminarHall from "@/assets/gallery-seminar-hall.jpg.asset.json";
+import upPanelMicClose from "@/assets/gallery-panel-mic-close.jpg.asset.json";
+import upKeynoteScreen from "@/assets/gallery-keynote-screen.jpg.asset.json";
+import upTrainingFists from "@/assets/gallery-training-fists.jpg.asset.json";
+import upMuaySuvarnabhumi from "@/assets/gallery-muay-suvarnabhumi.jpg.asset.json";
+import upAdvisorDesk from "@/assets/gallery-advisor-desk.jpg.asset.json";
+import upCommitteeBlue from "@/assets/gallery-committee-blue.jpg.asset.json";
+import upSatHandover from "@/assets/gallery-sat-handover.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
