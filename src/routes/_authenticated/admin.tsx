@@ -248,25 +248,59 @@ function AdminPage() {
 
   if (isAdmin === false) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
-        <div className="w-full max-w-md rounded-lg border border-destructive/40 bg-destructive/5 p-6 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-xs font-medium text-destructive">
-            🔒 Access Denied
+      <div className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
+        <div className="w-full max-w-lg rounded-lg border border-destructive/40 bg-destructive/5 p-6 space-y-5">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-xs font-medium text-destructive">
+              🔒 ไม่มีสิทธิ์เข้าถึง (Access Denied)
+            </span>
           </div>
-          <h1 className="text-lg font-semibold">เฉพาะ Root Admin เท่านั้น</h1>
-          <p className="text-sm text-muted-foreground">
-            บัญชี <span className="font-mono">{userEmail}</span> ไม่ได้รับสิทธิ์เข้าถึงหน้านี้
-          </p>
-          <p className="text-xs text-muted-foreground">
-            กรุณาออกจากระบบและเข้าใหม่ด้วยบัญชี Root Admin ที่กำหนดไว้ในระบบ
-            (ตั้งค่าผ่าน environment variable <span className="font-mono">ROOT_ADMIN_EMAIL</span>)
-          </p>
-          <div className="flex justify-center gap-3 pt-2">
+
+          <div className="space-y-2">
+            <h1 className="text-lg font-semibold">หน้านี้สำหรับ Root Admin เท่านั้น</h1>
+            <p className="text-sm text-muted-foreground">
+              คุณกำลังเข้าสู่ระบบด้วยบัญชี{" "}
+              <span className="font-mono text-foreground">{userEmail}</span>{" "}
+              ซึ่งยังไม่ได้รับสิทธิ์ admin ในระบบ
+            </p>
+          </div>
+
+          <div className="rounded-md border border-border bg-card p-4 space-y-3">
+            <p className="text-sm font-semibold">ต้องทำอะไรต่อ?</p>
+            <ol className="list-decimal space-y-2 pl-5 text-xs text-muted-foreground">
+              <li>
+                ตรวจสอบว่าอีเมลนี้ตรงกับค่า{" "}
+                <span className="font-mono text-foreground">ROOT_ADMIN_EMAIL</span>{" "}
+                ที่ตั้งไว้ใน environment variable หรือไม่
+                <br />
+                — ถ้าไม่ตรง ให้ <button onClick={signOut} className="underline hover:text-foreground">ออกจากระบบ</button>{" "}
+                แล้วเข้าใหม่ด้วยอีเมลที่ถูกต้อง
+              </li>
+              <li>
+                ถ้าอีเมลถูกต้องแล้วแต่ยังไม่ได้สิทธิ์ ให้ไปที่หน้า{" "}
+                <Link to="/auth" className="font-mono underline hover:text-foreground">/auth</Link>{" "}
+                → เปิดส่วน <span className="font-medium text-foreground">🔑 ยืนยันสิทธิ์ Root Admin</span>{" "}
+                แล้ววาง <span className="font-mono text-foreground">ROOT_ADMIN_BOOTSTRAP_TOKEN</span>{" "}
+                เพื่อ sync สิทธิ์
+              </li>
+              <li>
+                หลังจาก sync สำเร็จ กลับมาที่หน้านี้อีกครั้งและกด refresh
+              </li>
+            </ol>
+          </div>
+
+          <div className="flex flex-wrap justify-end gap-3 pt-1">
             <Link
               to="/"
               className="rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
             >
               กลับหน้าแรก
+            </Link>
+            <Link
+              to="/auth"
+              className="rounded-md border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-medium text-primary hover:bg-primary/20"
+            >
+              ไปยืนยันสิทธิ์ที่ /auth
             </Link>
             <button
               onClick={signOut}
@@ -279,6 +313,7 @@ function AdminPage() {
       </div>
     );
   }
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
