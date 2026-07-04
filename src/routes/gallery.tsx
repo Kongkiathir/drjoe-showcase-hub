@@ -48,6 +48,16 @@ import upTfControl from "@/assets/gallery-tf-control.jpg.asset.json";
 import upTfHosts from "@/assets/gallery-tf-hosts.jpg.asset.json";
 import upTfBlessing from "@/assets/gallery-tf-blessing.jpg.asset.json";
 import upTfWeighin from "@/assets/gallery-tf-weighin.jpg.asset.json";
+import upTempleGroup from "@/assets/gallery-temple-group.jpg.asset.json";
+import upOhmxEvent from "@/assets/gallery-ohmx-event.jpg.asset.json";
+import upFightersGroup from "@/assets/gallery-fighters-group.jpg.asset.json";
+import upConiTeam from "@/assets/gallery-coni-team.jpg.asset.json";
+import upConiPanel from "@/assets/gallery-coni-panel.jpg.asset.json";
+import upStageGuests from "@/assets/gallery-stage-guests.jpg.asset.json";
+import upStageTrio from "@/assets/gallery-stage-trio.jpg.asset.json";
+import upThaifightTeamline from "@/assets/gallery-thaifight-teamline.jpg.asset.json";
+import upOsenmaFriends from "@/assets/gallery-osenma-friends.jpg.asset.json";
+import upCountdownStage from "@/assets/gallery-countdown-stage.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -88,6 +98,16 @@ const SEEDED_UPLOADS = [
   { id: "s36", url: upTfHosts.url, caption: "พิธีกรคู่ THAI FIGHT บนเวที", category: "thai fight" },
   { id: "s37", url: upTfBlessing.url, caption: "พิธีให้พรก่อนขึ้นชก", category: "thai fight" },
   { id: "s38", url: upTfWeighin.url, caption: "งานชั่งน้ำหนัก · นักมวยกับผู้ใหญ่", category: "thai fight" },
+  { id: "s39", url: upTempleGroup.url, caption: "เยี่ยมชมวัดจีนกับคณะนักกีฬา", category: "milestone" },
+  { id: "s40", url: upOhmxEvent.url, caption: "ถ่ายภาพในงานอีเวนต์ OHM X", category: "event" },
+  { id: "s41", url: upFightersGroup.url, caption: "ภาพหมู่นักชกก่อนการแข่งขัน", category: "thai fight" },
+  { id: "s42", url: upConiTeam.url, caption: "ทีม THAI FIGHT ที่ CONI อิตาลี", category: "milestone" },
+  { id: "s43", url: upConiPanel.url, caption: "แถลงข่าว THAI FIGHT Italy", category: "broadcast" },
+  { id: "s44", url: upStageGuests.url, caption: "แขกรับเชิญบนเวที THAI FIGHT", category: "thai fight" },
+  { id: "s45", url: upStageTrio.url, caption: "พิธีกรบนเวทีกับศิลปินรับเชิญ", category: "performance" },
+  { id: "s46", url: upThaifightTeamline.url, caption: "ประชุมทีมก่อนเริ่มโชว์", category: "thai fight" },
+  { id: "s47", url: upOsenmaFriends.url, caption: "ภาพร่วมกับเพื่อนร่วมงาน", category: "archive" },
+  { id: "s48", url: upCountdownStage.url, caption: "Thai Fight Countdown บนเวที", category: "thai fight" },
 ];
 
 export const Route = createFileRoute("/gallery")({
