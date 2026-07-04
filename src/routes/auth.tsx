@@ -33,18 +33,17 @@ function AuthPage() {
       setSession({ status: "anon" });
       return;
     }
-    const { data: role } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", data.user.id)
-      .eq("role", "admin")
-      .maybeSingle();
+    const { data: isAdmin } = await supabase.rpc("has_role", {
+      _user_id: data.user.id,
+      _role: "admin",
+    });
     setSession({
       status: "signed-in",
       email: data.user.email ?? "",
       userId: data.user.id,
-      isAdmin: !!role,
+      isAdmin: !!isAdmin,
     });
+
   }
 
   useEffect(() => {

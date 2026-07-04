@@ -82,14 +82,13 @@ function AdminPage() {
         return;
       }
       setUserEmail(userData.user.email ?? null);
-      const { data: roleData } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", userData.user.id)
-        .eq("role", "admin")
-        .maybeSingle();
-      const admin = !!roleData;
+      const { data: isAdminRpc } = await supabase.rpc("has_role", {
+        _user_id: userData.user.id,
+        _role: "admin",
+      });
+      const admin = !!isAdminRpc;
       setIsAdmin(admin);
+
 
       if (!admin) {
         setImages([]);
