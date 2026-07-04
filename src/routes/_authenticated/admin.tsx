@@ -258,6 +258,10 @@ function AdminPage() {
           <p className="text-sm text-muted-foreground">
             บัญชี <span className="font-mono">{userEmail}</span> ไม่ได้รับสิทธิ์เข้าถึงหน้านี้
           </p>
+          <p className="text-xs text-muted-foreground">
+            กรุณาออกจากระบบและเข้าใหม่ด้วยบัญชี Root Admin ที่กำหนดไว้ในระบบ
+            (ตั้งค่าผ่าน environment variable <span className="font-mono">ROOT_ADMIN_EMAIL</span>)
+          </p>
           <div className="flex justify-center gap-3 pt-2">
             <Link
               to="/"
