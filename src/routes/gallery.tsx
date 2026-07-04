@@ -38,6 +38,16 @@ import upThreeHosts from "@/assets/gallery-three-hosts.jpg.asset.json";
 import upCh3Panel from "@/assets/gallery-ch3-panel.jpg.asset.json";
 import upTeamGraffiti from "@/assets/gallery-team-graffiti.jpg.asset.json";
 import upCeremony from "@/assets/gallery-ceremony.jpg.asset.json";
+import upTfChiangrai from "@/assets/gallery-tf-chiangrai.jpg.asset.json";
+import upTfRingInt from "@/assets/gallery-tf-ring-interview.jpg.asset.json";
+import upTfCrowdRain from "@/assets/gallery-tf-crowd-rain.jpg.asset.json";
+import upTfStageGreen from "@/assets/gallery-tf-stage-green.jpg.asset.json";
+import upTfSunset from "@/assets/gallery-tf-sunset.jpg.asset.json";
+import upTfVietnam from "@/assets/gallery-tf-vietnam.jpg.asset.json";
+import upTfControl from "@/assets/gallery-tf-control.jpg.asset.json";
+import upTfHosts from "@/assets/gallery-tf-hosts.jpg.asset.json";
+import upTfBlessing from "@/assets/gallery-tf-blessing.jpg.asset.json";
+import upTfWeighin from "@/assets/gallery-tf-weighin.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
