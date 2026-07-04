@@ -207,14 +207,16 @@ const CATEGORIES: Category[] = [
 function GalleryPage() {
   const [uploaded, setUploaded] = useState<
     { id: string; url: string; caption: string | null; category: string }[]
-  >([]);
+  >(SEEDED_UPLOADS);
 
   useEffect(() => {
     supabase
       .from("gallery_images")
       .select("id,url,caption,category")
       .order("created_at", { ascending: false })
-      .then(({ data }) => setUploaded(data ?? []));
+      .then(({ data }) => {
+        if (data && data.length) setUploaded([...data, ...SEEDED_UPLOADS]);
+      });
   }, []);
 
   return (
