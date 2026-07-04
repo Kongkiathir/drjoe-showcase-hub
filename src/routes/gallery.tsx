@@ -30,6 +30,14 @@ import upBtsBoxes from "@/assets/gallery-bts-boxes.jpg.asset.json";
 import upTrio from "@/assets/gallery-trio.jpg.asset.json";
 import upF16 from "@/assets/gallery-f16.jpg.asset.json";
 import upPortrait2 from "@/assets/gallery-portrait2.jpg.asset.json";
+import upKmitlStage from "@/assets/gallery-kmitl-stage.jpg.asset.json";
+import upMaskedCrew from "@/assets/gallery-masked-crew.jpg.asset.json";
+import upOnsetWood from "@/assets/gallery-onset-wood.jpg.asset.json";
+import upBarInterview from "@/assets/gallery-bar-interview.jpg.asset.json";
+import upThreeHosts from "@/assets/gallery-three-hosts.jpg.asset.json";
+import upCh3Panel from "@/assets/gallery-ch3-panel.jpg.asset.json";
+import upTeamGraffiti from "@/assets/gallery-team-graffiti.jpg.asset.json";
+import upCeremony from "@/assets/gallery-ceremony.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -52,6 +60,14 @@ const SEEDED_UPLOADS = [
   { id: "s18", url: upTrio.url, caption: "แขกรับเชิญพอดแคสต์ 3 คน", category: "podcast" },
   { id: "s19", url: upF16.url, caption: "กองถ่ายที่ฐานทัพ F-16", category: "archive" },
   { id: "s20", url: upPortrait2.url, caption: "โปรไฟล์ภาพถ่ายทางการ", category: "portrait" },
+  { id: "s21", url: upKmitlStage.url, caption: "KMITL Family · หลังเวทีคอนโทรล", category: "stage" },
+  { id: "s22", url: upMaskedCrew.url, caption: "ถ่ายรูปกับทีมนักแสดง", category: "event" },
+  { id: "s23", url: upOnsetWood.url, caption: "เบื้องหลังกองถ่ายในบ้านไม้", category: "on set" },
+  { id: "s24", url: upBarInterview.url, caption: "สัมภาษณ์บรรยากาศบาร์", category: "interview" },
+  { id: "s25", url: upThreeHosts.url, caption: "สามพิธีกรบันทึกรายการ", category: "podcast" },
+  { id: "s26", url: upCh3Panel.url, caption: "รายการช่อง 3 · แขกรับเชิญไทยไฟท์", category: "broadcast" },
+  { id: "s27", url: upTeamGraffiti.url, caption: "ทีมงาน 'ค้นคน' ยุคแรก", category: "archive" },
+  { id: "s28", url: upCeremony.url, caption: "พิธีบวงสรวงเปิดกล้อง", category: "milestone" },
 ];
 
 export const Route = createFileRoute("/gallery")({
