@@ -150,6 +150,13 @@ function AuthPage() {
             ? "ยังไม่มีบัญชี? สมัครที่นี่"
             : "มีบัญชีอยู่แล้ว? เข้าสู่ระบบ"}
         </button>
+
+        <BootstrapPanel
+          onDone={(bootstrapEmail) => {
+            setEmail(bootstrapEmail);
+            setMode("signin");
+          }}
+        />
       </div>
     </div>
   );
