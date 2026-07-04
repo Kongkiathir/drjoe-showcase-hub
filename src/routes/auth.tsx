@@ -173,58 +173,6 @@ function SignedInPanel({
   onSignOut: () => void | Promise<void>;
   onGoAdmin: () => void;
 }) {
-  const [showChange, setShowChange] = useState(false);
-  const [current, setCurrent] = useState("");
-  const [next, setNext] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    setMsg(null);
-
-    if (next.length < 8) {
-      setMsg({ kind: "err", text: "รหัสผ่านใหม่ต้องยาวอย่างน้อย 8 ตัวอักษร" });
-      return;
-    }
-    if (next !== confirm) {
-      setMsg({ kind: "err", text: "รหัสผ่านใหม่และการยืนยันไม่ตรงกัน" });
-      return;
-    }
-    if (next === current) {
-      setMsg({ kind: "err", text: "รหัสผ่านใหม่ต้องต่างจากรหัสผ่านเดิม" });
-      return;
-    }
-
-    setBusy(true);
-    try {
-      // Re-verify current password before allowing change
-      const { error: verifyErr } = await supabase.auth.signInWithPassword({
-        email,
-        password: current,
-      });
-      if (verifyErr) {
-        throw new Error("รหัสผ่านปัจจุบันไม่ถูกต้อง");
-      }
-
-      const { error: updErr } = await supabase.auth.updateUser({ password: next });
-      if (updErr) throw updErr;
-
-      setMsg({ kind: "ok", text: "เปลี่ยนรหัสผ่านสำเร็จ ✓ ครั้งต่อไปให้ใช้รหัสผ่านใหม่" });
-      setCurrent("");
-      setNext("");
-      setConfirm("");
-    } catch (err) {
-      setMsg({
-        kind: "err",
-        text: err instanceof Error ? err.message : "เปลี่ยนรหัสผ่านไม่สำเร็จ",
-      });
-    } finally {
-      setBusy(false);
-    }
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4 py-10">
       <div className="w-full max-w-sm space-y-6">
@@ -241,69 +189,6 @@ function SignedInPanel({
           </div>
           <h1 className="mt-2 text-2xl font-semibold">บัญชีของคุณ</h1>
           <p className="mt-1 font-mono text-xs text-muted-foreground">{email}</p>
-        </div>
-
-        <div className="rounded-lg border border-border bg-card p-4">
-          <button
-            type="button"
-            onClick={() => setShowChange((v) => !v)}
-            className="flex w-full items-center justify-between text-sm font-semibold"
-          >
-            <span>เปลี่ยนรหัสผ่าน <span className="ml-1 text-xs font-normal text-muted-foreground">(ไม่บังคับ)</span></span>
-            <span className="text-xs text-muted-foreground">{showChange ? "▾" : "▸"}</span>
-          </button>
-
-          {showChange && (
-            <div className="mt-4 space-y-3">
-              <form onSubmit={submit} className="space-y-3">
-                <input
-                  type="password"
-                  required
-                  autoComplete="current-password"
-                  placeholder="รหัสผ่านปัจจุบัน"
-                  value={current}
-                  onChange={(e) => setCurrent(e.target.value)}
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                />
-                <input
-                  type="password"
-                  required
-                  minLength={8}
-                  autoComplete="new-password"
-                  placeholder="รหัสผ่านใหม่ (อย่างน้อย 8 ตัว)"
-                  value={next}
-                  onChange={(e) => setNext(e.target.value)}
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                />
-                <input
-                  type="password"
-                  required
-                  minLength={8}
-                  autoComplete="new-password"
-                  placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง"
-                  value={confirm}
-                  onChange={(e) => setConfirm(e.target.value)}
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                />
-                <button
-                  type="submit"
-                  disabled={busy}
-                  className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
-                >
-                  {busy ? "กำลังบันทึก..." : "บันทึกรหัสผ่านใหม่"}
-                </button>
-              </form>
-              {msg && (
-                <p
-                  className={`text-xs ${
-                    msg.kind === "ok" ? "text-primary" : "text-destructive"
-                  }`}
-                >
-                  {msg.text}
-                </p>
-              )}
-            </div>
-          )}
         </div>
 
         <div className="flex gap-3">
@@ -326,6 +211,7 @@ function SignedInPanel({
     </div>
   );
 }
+
 
 function BootstrapPanel({ onDone }: { onDone: (email: string) => void }) {
   const [open, setOpen] = useState(false);
