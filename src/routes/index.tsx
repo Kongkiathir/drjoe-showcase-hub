@@ -49,23 +49,23 @@ const NAV = [
 const EXPERTISE = [
   {
     n: "01",
-    title: "Artificial Intelligence",
-    body: "Generative AI, LLM Fine-tuning, Computer Vision และ Deep Learning สำหรับองค์กร",
+    title: "Muay Thai Ecosystem 6.0",
+    body: "ออกแบบและขับเคลื่อนระบบนิเวศมวยไทยยุคใหม่ ผสานวัฒนธรรม กีฬา สื่อ และเทคโนโลยีเข้าด้วยกัน",
   },
   {
     n: "02",
-    title: "Innovation & Product",
-    body: "ออกแบบผลิตภัณฑ์ดิจิทัลตั้งแต่แนวคิดจนถึงการเปิดตัวจริง (0 → 1)",
+    title: "Sport Media & Production",
+    body: "ผลิตและวางกลยุทธ์การตลาดของ THAI FIGHT, IDOL FIGHT, IDOL LEAGUE และรายการกีฬาระดับสากล",
   },
   {
     n: "03",
-    title: "Digital Transformation",
-    body: "ที่ปรึกษาปรับโครงสร้างองค์กร ด้วยข้อมูลและระบบอัตโนมัติ",
+    title: "Digital Infrastructure & AI",
+    body: "วางโครงสร้างพื้นฐานดิจิทัลและประยุกต์ใช้ปัญญาประดิษฐ์ (AI Integration) ในอุตสาหกรรมกีฬาและบันเทิง",
   },
   {
     n: "04",
-    title: "Education & Research",
-    body: "ออกแบบหลักสูตร ฝึกอบรม และตีพิมพ์งานวิจัยด้านเทคโนโลยีการศึกษา",
+    title: "Global IP Management",
+    body: "บริหารจัดการทรัพย์สินทางปัญญาระดับสากลของมวยไทย เพื่อสร้างมูลค่าและต่อยอดในตลาดโลก",
   },
 ];
 
@@ -82,79 +82,80 @@ const MOMENTS = [
 
 
 const SKILLS = [
-  { name: "Generative AI & LLM", pct: 98 },
-  { name: "Machine Learning / Deep Learning", pct: 94 },
-  { name: "Product Strategy", pct: 92 },
-  { name: "Computer Vision", pct: 88 },
-  { name: "Cloud & Data Infra", pct: 86 },
-  { name: "AR / VR / XR", pct: 80 },
+  { name: "Sport Media & Production Strategy", pct: 98 },
+  { name: "Muay Thai Ecosystem & IP Management", pct: 96 },
+  { name: "Marketing & Brand Operations", pct: 94 },
+  { name: "Digital Infrastructure & AI Integration", pct: 90 },
+  { name: "Live Broadcast & Event Direction", pct: 92 },
+  { name: "Innovation & Industrial Management", pct: 88 },
 ];
 
 const EDUCATION = [
   {
-    year: "2015 — 2019",
-    degree: "Ph.D. · Computer Science",
-    school: "Chulalongkorn University",
-    note: "Dissertation: Human-in-the-loop Machine Learning",
+    year: "2026",
+    degree: "Ph.D. · Industrial Management and Innovation",
+    school:
+      "College of Industrial Management and Innovation, KMITL",
+    note: "Focus: Muay Thai Ecosystem 6.0 · Digital Infrastructure · AI Integration · Global IP Management",
   },
   {
-    year: "2011 — 2013",
-    degree: "M.Sc. · Information Technology",
-    school: "King Mongkut's Institute of Technology Ladkrabang",
-    note: "First-class Honors",
+    year: "2020",
+    degree: "M.B.A. · Sports, Media and Entertainment Management",
+    school: "King Mongkut's Institute of Technology Ladkrabang (KMITL)",
+    note: "บริหารธุรกิจมหาบัณฑิต สาขาการจัดการกีฬา สื่อ และบันเทิง",
   },
   {
-    year: "2007 — 2011",
-    degree: "B.Eng. · Computer Engineering",
-    school: "Kasetsart University",
-    note: "Dean's List",
+    year: "1991",
+    degree: "LL.B. · Bachelor of Laws",
+    school: "Ramkhamhaeng University",
+    note: "นิติศาสตรบัณฑิต มหาวิทยาลัยรามคำแหง",
   },
 ];
 
 const EXPERIENCE = [
   {
     n: "01",
-    role: "Teaching · Speaking · Workshop",
+    role: "THAI FIGHT Co., Ltd.",
     items: [
-      "อาจารย์พิเศษหลักสูตร AI · หลายสถาบันชั้นนำ",
-      "วิทยากรรับเชิญ AI for Business · SET, DEPA, NIA",
-      "ผู้ออกแบบหลักสูตร Generative AI ระดับผู้บริหาร",
+      "ประธานเจ้าหน้าที่ฝ่ายผลิตและการตลาด (Chief Marketing Operations Officer)",
+      "วางกลยุทธ์การผลิต การตลาด และประสบการณ์ผู้ชมของ THAI FIGHT",
+      "ควบคุมโครงสร้างการแข่งขันและการถ่ายทอดสดในระดับสากล",
     ],
   },
   {
     n: "02",
-    role: "Research & Development",
+    role: "Originals Studio Co., Ltd.",
     items: [
-      "หัวหน้าโครงการ AI Vision สำหรับภาคเกษตรกรรม",
-      "งานวิจัยตีพิมพ์นานาชาติกว่า 20 บทความ (Scopus / IEEE)",
-      "ผู้ร่วมพัฒนา Thai Foundation Model ขนาดเล็ก",
+      "ประธานเจ้าหน้าที่บริหาร (Chief Executive Officer)",
+      "พัฒนา MUAY O.G. และ Muay Thai Archives",
+      "ผลิตคอนเทนต์กีฬาและวัฒนธรรมมวยไทยสำหรับตลาดโลก",
     ],
   },
   {
     n: "03",
-    role: "Industry & Consulting",
+    role: "Idol Games Co., Ltd.",
     items: [
-      "ที่ปรึกษาด้าน AI Strategy ให้กับองค์กรระดับ SET50",
-      "ผู้ก่อตั้งและ CEO สตาร์ทอัพด้าน Enterprise AI",
-      "คณะทำงานยุทธศาสตร์ AI แห่งชาติ",
+      "ผู้ก่อตั้ง (Founder) บริษัท ไอดอลเกมส์ จำกัด",
+      "ผู้สร้างสรรค์และผลิต IDOL FIGHT และ IDOL LEAGUE",
+      "พัฒนามหกรรมความบันเทิงเชิงกีฬารูปแบบใหม่ของไทย",
     ],
   },
   {
     n: "04",
-    role: "Community & Impact",
+    role: "National & Academic Contributions",
     items: [
-      "โครงการ AI for All — สอนเยาวชนกว่า 5,000 คน",
-      "โครงการ Digital Literacy สำหรับผู้สูงอายุ",
-      "Mentor สตาร์ทอัพในโครงการชั้นนำของไทย",
+      "คณะทำงานขับเคลื่อนมวยไทยสู่โอลิมปิก (2022)",
+      "ผู้ทรงคุณวุฒิจัดทำข้อมูลมรดกภูมิปัญญามวยไทยเสนอ UNESCO (2023)",
+      "ที่ปรึกษาโครงการระดับชาติด้าน AI วัฒนธรรม กีฬา และ Marketing Technology",
     ],
   },
 ];
 
 const STATS = [
-  { k: "20+", v: "ปีในวงการเทคโนโลยี" },
-  { k: "150+", v: "โครงการที่ปรึกษา" },
-  { k: "5,000+", v: "ผู้ผ่านการอบรม" },
-  { k: "20+", v: "บทความวิชาการ" },
+  { k: "30+", v: "ปีในวงการสื่อและกีฬา" },
+  { k: "3", v: "บริษัทที่บริหารและก่อตั้ง" },
+  { k: "UNESCO", v: "ผู้ทรงคุณวุฒิมรดกมวยไทย" },
+  { k: "PhD", v: "KMITL · Industrial Mgmt." },
 ];
 
 const LIGHTBOX_SLIDES = [
