@@ -78,6 +78,16 @@ import upMuaythaiDayOfficials from "@/assets/gallery-muaythai-day-officials.jpg.
 import upNightRunChiangrai from "@/assets/gallery-night-run-chiangrai.jpg.asset.json";
 import upSitpalanKids from "@/assets/gallery-sitpalan-kids.jpg.asset.json";
 import upTfNightCrowd from "@/assets/gallery-tf-night-crowd.jpg.asset.json";
+import upTfRingSuit from "@/assets/gallery-tf-ring-suit.jpg.asset.json";
+import upTfKoratStudio from "@/assets/gallery-tf-korat-studio.jpg.asset.json";
+import upTfRingCamera from "@/assets/gallery-tf-ring-camera.jpg.asset.json";
+import upTfBriefing from "@/assets/gallery-tf-briefing.jpg.asset.json";
+import upTfChiangmaiDusk from "@/assets/gallery-tf-chiangmai-dusk.jpg.asset.json";
+import upTfStudioRitual from "@/assets/gallery-tf-studio-ritual.jpg.asset.json";
+import upTfVipFight from "@/assets/gallery-tf-vip-fight.jpg.asset.json";
+import upTfPanelMic from "@/assets/gallery-tf-panel-mic.jpg.asset.json";
+import upTfOvControl from "@/assets/gallery-tf-ov-control.jpg.asset.json";
+import upTfNarathiwatRain from "@/assets/gallery-tf-narathiwat-rain.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
