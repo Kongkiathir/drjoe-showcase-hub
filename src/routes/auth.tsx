@@ -394,10 +394,9 @@ function BootstrapPanel({ onDone }: { onDone: (email: string) => void }) {
           </form>
           {result?.kind === "ok" && (
             <p className="text-xs text-primary">
-              ✓ ซิงค์สำเร็จ — บัญชี{" "}
+              ✓ ยืนยันสำเร็จ — บัญชี{" "}
               <span className="font-mono">{result.email}</span>{" "}
-              พร้อมสิทธิ์ admin แล้ว เข้าสู่ระบบด้วยรหัสผ่านจาก{" "}
-              <span className="font-mono">ROOT_ADMIN_PASSWORD</span>
+              พร้อมสิทธิ์ admin แล้ว เข้าสู่ระบบด้วยรหัสผ่านเดิมได้เลย
             </p>
           )}
           {result?.kind === "err" && (
