@@ -234,12 +234,26 @@ function SignedInPanel({
   // This fallback shows briefly during the redirect.
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4 py-10">
-      <div className="w-full max-w-sm space-y-6 text-center">
+      <div className="w-full max-w-sm space-y-5 text-center">
         <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
           ● Root Admin
         </span>
-        <h1 className="text-2xl font-semibold">กำลังพาไปหน้า Admin…</h1>
+        <div className="flex justify-center">
+          <span
+            aria-hidden
+            className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-primary/30 border-t-primary"
+          />
+        </div>
+        <h1 className="text-xl font-semibold">กำลังพาไปหน้า Admin…</h1>
+        <div
+          className="mx-auto h-1 w-full max-w-[240px] overflow-hidden rounded-full bg-primary/10"
+          role="progressbar"
+          aria-label="กำลังเปลี่ยนหน้า"
+        >
+          <span className="block h-full w-1/3 animate-[loading-bar_1.2s_ease-in-out_infinite] rounded-full bg-primary" />
+        </div>
         <p className="font-mono text-xs text-muted-foreground">{email}</p>
+
         <div className="flex justify-center gap-3">
           <button
             onClick={onGoAdmin}
