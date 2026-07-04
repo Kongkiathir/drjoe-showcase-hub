@@ -1,49 +1,38 @@
-## เป้าหมาย
-เพิ่มระบบอัปโหลดหลายภาพแบบ drag & drop สำหรับแอดมิน (คุณเท่านั้น) เพื่อเพิ่มรูปเข้าหน้า Gallery ได้เอง โดยไม่ต้องส่งผ่าน AI
 
-## สรุปฟีเจอร์
-- หน้า `/admin` ที่ต้องล็อกอินด้วยอีเมล (Lovable Cloud Auth)
-- Dropzone อัปโหลดครั้งละไม่เกิน **10 ไฟล์**, ไฟล์ละไม่เกิน **20MB**, เฉพาะรูปภาพ (jpg/png/webp)
-- แสดง preview + progress ต่อไฟล์ + ปุ่มลบก่อนอัป
-- ช่องกรอก caption/หมวด (Podcast, Talkshow, THAI FIGHT, Behind the scenes, อื่นๆ) ต่อรูป
-- อัปโหลดขึ้น Lovable Cloud Storage (bucket public) → บันทึก URL + metadata ลงตาราง
-- หน้า `/gallery` อ่านจากตาราง แล้ว render อัตโนมัติ (ยังคง gallery ปัจจุบันเป็น fallback ถ้าตารางว่าง)
-- แอดมินลบภาพเดิมจาก `/admin` ได้
+## สิ่งที่จะทำ
 
-## แผนเทคนิค
+### 1) อัปโหลด 10 ภาพที่คุณเพิ่งส่งมาเข้า Gallery ทันที
+สร้าง asset pointer ให้ทั้ง 10 ไฟล์ผ่าน Lovable Assets แล้วเพิ่มเป็นการ์ดใน `src/routes/gallery.tsx` ส่วน "Latest Uploads" (แสดงเลยโดยไม่ต้องรอ login) พร้อม caption/category ที่เดาจากภาพ:
 
-**1. Backend (Lovable Cloud)**
-- เปิด Lovable Cloud
-- Auth: email + password (ไม่ใช้ social) — คุณสมัคร 1 บัญชี
-- Storage bucket: `gallery` (public read)
-- ตาราง `gallery_images`: `id, url, storage_path, caption, category, sort_order, uploaded_by, created_at`
-- ตาราง `user_roles` + enum `app_role('admin')` + ฟังก์ชัน `has_role()` (ตาม security pattern)
-- RLS:
-  - `SELECT` เปิดให้ทุกคน (anon + authenticated)
-  - `INSERT/UPDATE/DELETE` เฉพาะ `has_role(auth.uid(),'admin')`
-- Storage policies: อ่านสาธารณะ, เขียน/ลบเฉพาะ admin
-- Seed: assign role admin ให้ user id ของคุณ (หลังคุณสมัครแล้ว)
+| # | ภาพ | Category | Caption |
+|---|-----|----------|---------|
+| 1 | 08A96332 (กรีนสกรีน+ไมค์) | On Set | เบื้องหลังถ่ายทำ กรีนสกรีน |
+| 2 | 8A187513 (สัมภาษณ์โซฟา) | Interview | บันทึกเทปสัมภาษณ์ |
+| 3 | 8DF4A912 (MuayOG studio) | Podcast | รายการ MuayOG |
+| 4 | 16_Topaz (เสื้อเหลืองไมค์) | Event | งานแถลงข่าว |
+| 5 | 27E0332D (เสื้อลายมังกร) | Portrait | โปรโมตคาแรกเตอร์ |
+| 6 | 30D5E420 (ครุยแดง) | Milestone | รับปริญญา |
+| 7 | 77CB952B (ควัน+ชฎา) | Performance | การแสดงบนเวที |
+| 8 | 103CBCE4 (ถ่ายรูปหมู่ทีวี) | On Set | ทีมงานรายการโทรทัศน์ |
+| 9 | 279FFDC2 (หัวเราะกล้อง) | On Set | บรรยากาศกองถ่าย |
+| 10 | 537CE58F (Three Man Down) | Event | คอนเสิร์ต Three Man Down |
 
-**2. Frontend**
-- `src/routes/auth.tsx` — หน้า login/signup (email + password)
-- `src/routes/_authenticated/route.tsx` — managed gate (มีอยู่แล้วเมื่อเปิด Cloud)
-- `src/routes/_authenticated/admin.tsx` — หน้าแอดมิน
-  - Dropzone (react-dropzone) รับ image/*, maxFiles=10, maxSize=20MB
-  - Validation ฝั่ง client + toast แจ้ง error รายไฟล์
-  - Grid preview พร้อม input caption, select category, ปุ่มลบ
-  - ปุ่ม "อัปโหลดทั้งหมด" → upload ทีละไฟล์ไป Storage + insert row + แสดง progress bar
-  - ตารางรูปที่มี พร้อมปุ่มลบ (ลบทั้ง storage + row)
-- `src/routes/gallery.tsx` — ดึงจาก `gallery_images` ด้วย server fn public (publishable key) + fallback รูปเดิม
-- ลิงก์ "Admin" เล็กๆ ใน footer (แสดงเฉพาะเมื่อ login แล้ว)
+### 2) ตรวจว่าระบบ drag & drop ที่สร้างไว้แล้วยังใช้งานได้
+- ยืนยันว่า `/auth`, `/_authenticated/admin`, table `gallery_images`, bucket `gallery`, RLS + role admin ทั้งหมดยัง compile และ typecheck ผ่าน
+- ไม่แก้ backend เพิ่ม (โครงพร้อมแล้ว: 10 ไฟล์/ครั้ง, 20MB/ไฟล์, JPG/PNG/WebP)
 
-**3. Dependencies**
-- `bun add react-dropzone`
+### 3) สิ่งที่คุณต้องทำเอง (ยังจำเป็น หากอยากอัปเองในอนาคต)
+1. เข้า `/auth` สมัครด้วยอีเมล 1 ครั้ง
+2. แจ้งอีเมลกลับมาเพื่อรัน SQL ให้สิทธิ์ admin
+3. หลังได้สิทธิ์ → ใช้ `/admin` ลาก-วางอัปเองได้เลย
 
-## ขั้นตอนหลังทำเสร็จ (สิ่งที่คุณต้องทำ)
-1. คลิก Sign up ที่ `/auth` ด้วยอีเมลของคุณ 1 ครั้ง
-2. บอกอีเมลกลับมาให้ผม เพื่อรัน migration ให้สิทธิ์ admin
-3. หลังจากนั้นเข้า `/admin` ลาก-วางรูปได้เลย
+## รายละเอียดทางเทคนิค
 
-## ข้อจำกัด
-- 10 ไฟล์/ครั้ง, 20MB/ไฟล์ (บังคับทั้ง client + Storage policy)
-- รองรับ JPG, PNG, WebP เท่านั้น (ไม่รับ HEIC — ต้องแปลงก่อน)
+- ใช้ `lovable-assets create --file /mnt/user-uploads/<file>` ต่อแต่ละภาพ → เขียนเป็น `src/assets/gallery-*.jpg.asset.json`
+- ใน `gallery.tsx` เพิ่ม array `seededImages` (import 10 pointer) merge เข้าก่อนรายการจาก DB ให้เห็นทันที
+- ไม่แตะ `routeTree.gen.ts` / auto-gen files
+- ไม่ติดตั้ง package เพิ่ม
+
+## นอกขอบเขต
+- ไม่แก้ธีม/หน้า index
+- ไม่แก้ policies/schema เพิ่ม
