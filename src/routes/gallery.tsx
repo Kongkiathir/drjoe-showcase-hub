@@ -440,8 +440,10 @@ function GalleryPage() {
 
 function UploadedBlock({
   images,
+  onOpen,
 }: {
   images: { id: string; url: string; caption: string | null; category: string }[];
+  onOpen: (i: number) => void;
 }) {
   return (
     <section id="latest" className="pt-24 scroll-mt-24">
@@ -457,10 +459,13 @@ function UploadedBlock({
       </h2>
       <div className="mt-2 text-muted-foreground">อัปเดตล่าสุด</div>
       <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {images.map((img) => (
-          <figure
+        {images.map((img, i) => (
+          <button
+            type="button"
             key={img.id}
-            className="group relative overflow-hidden rounded-lg border border-border bg-card aspect-square"
+            onClick={() => onOpen(i)}
+            className="group relative overflow-hidden rounded-lg border border-border bg-card aspect-square cursor-zoom-in text-left focus:outline-none focus:ring-2 focus:ring-primary"
+            aria-label={img.caption ?? "เปิดดูรูป"}
           >
             <img
               src={img.url}
@@ -479,7 +484,7 @@ function UploadedBlock({
                 </figcaption>
               </>
             )}
-          </figure>
+          </button>
         ))}
       </div>
     </section>
