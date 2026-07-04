@@ -40,7 +40,7 @@
 :root {
   --radius: 0.5rem;
   /* Editorial dark navy palette with electric violet accents */
-  --background: oklch(0.16 0.03 260);
+  --background: oklch(0.208 0.03 260);
   --foreground: oklch(0.96 0.01 250);
   --card: oklch(0.20 0.035 260);
   --card-foreground: oklch(0.96 0.01 250);
@@ -64,7 +64,7 @@
 }
 
 .dark {
-  --background: oklch(0.16 0.03 260);
+  --background: oklch(0.208 0.03 260);
   --foreground: oklch(0.96 0.01 250);
 }
 
@@ -77,8 +77,8 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.72 0.18 285 / 20%), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 100%, oklch(0.78 0.16 195 / 12%), transparent);
+      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.72 0.18 285 / 26%), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, oklch(0.78 0.16 195 / 16%), transparent);
     background-attachment: fixed;
   }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
