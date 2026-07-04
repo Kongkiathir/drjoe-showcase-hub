@@ -10,6 +10,29 @@ import onsetAsset from "@/assets/drjoe-onset.jpg.asset.json";
 import muayogAsset from "@/assets/drjoe-muayog.jpg.asset.json";
 import newsAsset from "@/assets/drjoe-news.jpg.asset.json";
 import talkshowAsset from "@/assets/drjoe-talkshow.jpg.asset.json";
+import upGreen from "@/assets/gallery-greenscreen.jpg.asset.json";
+import upInterview from "@/assets/gallery-interview.jpg.asset.json";
+import upMuayogStudio from "@/assets/gallery-muayog-studio.jpg.asset.json";
+import upPress from "@/assets/gallery-press.jpg.asset.json";
+import upDragon from "@/assets/gallery-dragon.jpg.asset.json";
+import upGrad from "@/assets/gallery-graduation.jpg.asset.json";
+import upPerf from "@/assets/gallery-performance.jpg.asset.json";
+import upTvteam from "@/assets/gallery-tvteam.jpg.asset.json";
+import upOnsetSmile from "@/assets/gallery-onset-smile.jpg.asset.json";
+import upThreeManDown from "@/assets/gallery-threemandown.jpg.asset.json";
+
+const SEEDED_UPLOADS = [
+  { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
+  { id: "s2", url: upInterview.url, caption: "บันทึกเทปสัมภาษณ์", category: "interview" },
+  { id: "s3", url: upMuayogStudio.url, caption: "รายการ MUAY O.G.", category: "podcast" },
+  { id: "s4", url: upPress.url, caption: "งานแถลงข่าว", category: "event" },
+  { id: "s5", url: upDragon.url, caption: "โปรโมตคาแรกเตอร์", category: "portrait" },
+  { id: "s6", url: upGrad.url, caption: "รับปริญญา", category: "milestone" },
+  { id: "s7", url: upPerf.url, caption: "การแสดงบนเวที", category: "performance" },
+  { id: "s8", url: upTvteam.url, caption: "ทีมงานรายการโทรทัศน์", category: "on set" },
+  { id: "s9", url: upOnsetSmile.url, caption: "บรรยากาศกองถ่าย", category: "on set" },
+  { id: "s10", url: upThreeManDown.url, caption: "คอนเสิร์ต Three Man Down", category: "event" },
+];
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
