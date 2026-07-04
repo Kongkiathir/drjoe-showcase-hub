@@ -372,8 +372,8 @@ function BootstrapPanel({ onDone }: { onDone: (email: string) => void }) {
         <div className="mt-3 space-y-3 rounded-md border border-border bg-card p-3">
           <p className="text-xs text-muted-foreground">
             วาง <span className="font-mono">ROOT_ADMIN_BOOTSTRAP_TOKEN</span>{" "}
-            เพื่อสร้าง/รีเซ็ตรหัสผ่านและมอบสิทธิ์ admin
-            ให้กับบัญชีที่กำหนดไว้ใน environment
+            เพื่อยืนยันสิทธิ์ admin ให้กับบัญชีที่กำหนดใน environment
+            (ถ้ายังไม่มีบัญชีจะสร้างให้ใหม่ — ถ้ามีอยู่แล้วรหัสผ่านเดิมจะไม่ถูกเปลี่ยน)
           </p>
           <form onSubmit={submit} className="space-y-2">
             <input
