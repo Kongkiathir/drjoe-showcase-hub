@@ -196,6 +196,38 @@ function AdminPage() {
     setRefreshKey((k) => k + 1);
   }
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+
+  async function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = images.findIndex((i) => i.id === active.id);
+    const newIndex = images.findIndex((i) => i.id === over.id);
+    if (oldIndex < 0 || newIndex < 0) return;
+    const reordered = arrayMove(images, oldIndex, newIndex).map((img, idx) => ({
+      ...img,
+      sort_order: (idx + 1) * 10,
+    }));
+    setImages(reordered); // optimistic
+    const updates = await Promise.all(
+      reordered.map((img) =>
+        supabase
+          .from("gallery_images")
+          .update({ sort_order: img.sort_order })
+          .eq("id", img.id),
+      ),
+    );
+    const failed = updates.find((r) => r.error);
+    if (failed?.error) {
+      alert(`บันทึกลำดับล้มเหลว: ${failed.error.message}`);
+      setRefreshKey((k) => k + 1);
+    }
+  }
+
   async function signOut() {
     await supabase.auth.signOut();
     navigate({ to: "/auth" });
