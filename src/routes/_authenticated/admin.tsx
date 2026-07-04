@@ -69,6 +69,7 @@ function AdminPage() {
   const navigate = useNavigate();
   const [pending, setPending] = useState<PendingFile[]>([]);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const [images, setImages] = useState<GalleryRow[]>([]);
   const [uploading, setUploading] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -80,15 +81,20 @@ function AdminPage() {
         navigate({ to: "/auth" });
         return;
       }
-      // Check admin via a probe: try inserting empty is heavy — instead just try to list roles via RPC bypass. Use a query on gallery_images with insert probe? Easiest: attempt storage list.
-      // We'll trust the RLS and let uploads reveal 403 if not admin. Show a warning meanwhile.
+      setUserEmail(userData.user.email ?? null);
       const { data: roleData } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", userData.user.id)
         .eq("role", "admin")
         .maybeSingle();
-      setIsAdmin(!!roleData);
+      const admin = !!roleData;
+      setIsAdmin(admin);
+
+      if (!admin) {
+        setImages([]);
+        return;
+      }
 
       const { data: imgs } = await supabase
         .from("gallery_images")
