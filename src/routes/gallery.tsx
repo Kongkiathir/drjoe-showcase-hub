@@ -38,6 +38,16 @@ import upThreeHosts from "@/assets/gallery-three-hosts.jpg.asset.json";
 import upCh3Panel from "@/assets/gallery-ch3-panel.jpg.asset.json";
 import upTeamGraffiti from "@/assets/gallery-team-graffiti.jpg.asset.json";
 import upCeremony from "@/assets/gallery-ceremony.jpg.asset.json";
+import upTfChiangrai from "@/assets/gallery-tf-chiangrai.jpg.asset.json";
+import upTfRingInt from "@/assets/gallery-tf-ring-interview.jpg.asset.json";
+import upTfCrowdRain from "@/assets/gallery-tf-crowd-rain.jpg.asset.json";
+import upTfStageGreen from "@/assets/gallery-tf-stage-green.jpg.asset.json";
+import upTfSunset from "@/assets/gallery-tf-sunset.jpg.asset.json";
+import upTfVietnam from "@/assets/gallery-tf-vietnam.jpg.asset.json";
+import upTfControl from "@/assets/gallery-tf-control.jpg.asset.json";
+import upTfHosts from "@/assets/gallery-tf-hosts.jpg.asset.json";
+import upTfBlessing from "@/assets/gallery-tf-blessing.jpg.asset.json";
+import upTfWeighin from "@/assets/gallery-tf-weighin.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -68,6 +78,16 @@ const SEEDED_UPLOADS = [
   { id: "s26", url: upCh3Panel.url, caption: "รายการช่อง 3 · แขกรับเชิญไทยไฟท์", category: "broadcast" },
   { id: "s27", url: upTeamGraffiti.url, caption: "ทีมงาน 'ค้นคน' ยุคแรก", category: "archive" },
   { id: "s28", url: upCeremony.url, caption: "พิธีบวงสรวงเปิดกล้อง", category: "milestone" },
+  { id: "s29", url: upTfChiangrai.url, caption: "THAI FIGHT เชียงราย · หลังเวที", category: "thai fight" },
+  { id: "s30", url: upTfRingInt.url, caption: "สัมภาษณ์ข้างเวที THAI FIGHT", category: "thai fight" },
+  { id: "s31", url: upTfCrowdRain.url, caption: "แฟนไทยไฟท์กลางสายฝน", category: "thai fight" },
+  { id: "s32", url: upTfStageGreen.url, caption: "เวที THAI FIGHT · โปรดักชันเต็มรูปแบบ", category: "thai fight" },
+  { id: "s33", url: upTfSunset.url, caption: "รอเวลาพระอาทิตย์ตก ก่อนเปิดเวที", category: "thai fight" },
+  { id: "s34", url: upTfVietnam.url, caption: "THAI FIGHT ทัวร์เวียดนาม", category: "thai fight" },
+  { id: "s35", url: upTfControl.url, caption: "ห้องคอนโทรลถ่ายทอดสด THAI FIGHT", category: "thai fight" },
+  { id: "s36", url: upTfHosts.url, caption: "พิธีกรคู่ THAI FIGHT บนเวที", category: "thai fight" },
+  { id: "s37", url: upTfBlessing.url, caption: "พิธีให้พรก่อนขึ้นชก", category: "thai fight" },
+  { id: "s38", url: upTfWeighin.url, caption: "งานชั่งน้ำหนัก · นักมวยกับผู้ใหญ่", category: "thai fight" },
 ];
 
 export const Route = createFileRoute("/gallery")({
