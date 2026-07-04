@@ -50,7 +50,7 @@ export const Route = createFileRoute("/api/public/bootstrap-admin")({
         if (created.data.user) {
           userId = created.data.user.id;
         } else {
-          // Likely already exists — look up and reset password
+          // Already exists — do NOT touch password. Only ensure email is confirmed.
           const { data: list } = await supabaseAdmin.auth.admin.listUsers({
             page: 1,
             perPage: 200,
@@ -63,10 +63,11 @@ export const Route = createFileRoute("/api/public/bootstrap-admin")({
             );
           }
           userId = found.id;
-          await supabaseAdmin.auth.admin.updateUserById(userId, {
-            password,
-            email_confirm: true,
-          });
+          if (!found.email_confirmed_at) {
+            await supabaseAdmin.auth.admin.updateUserById(userId, {
+              email_confirm: true,
+            });
+          }
         }
 
         const { error: roleErr } = await supabaseAdmin
