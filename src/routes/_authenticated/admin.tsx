@@ -373,39 +373,90 @@ function AdminPage() {
         )}
 
         <section>
-          <h2 className="mb-3 text-sm font-semibold">
-            ภาพในระบบ ({images.length})
-          </h2>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-sm font-semibold">
+              ภาพในระบบ ({images.length})
+            </h2>
+            {images.length > 0 && (
+              <p className="text-xs text-muted-foreground">
+                ลากที่มุมซ้ายบนของภาพเพื่อจัดลำดับใหม่
+              </p>
+            )}
+          </div>
           {images.length === 0 ? (
             <p className="text-sm text-muted-foreground">ยังไม่มีภาพในระบบ</p>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {images.map((img) => (
-                <div key={img.id} className="group relative rounded overflow-hidden border border-border">
-                  <img
-                    src={img.url}
-                    alt={img.caption ?? ""}
-                    className="aspect-square w-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-2">
-                    <p className="text-[10px] text-white/90 line-clamp-2">
-                      {img.caption || "—"}
-                    </p>
-                    <p className="text-[10px] text-white/60">{img.category}</p>
-                    <button
-                      onClick={() => deleteImage(img)}
-                      className="mt-2 text-[10px] text-red-300 hover:text-red-100"
-                    >
-                      ลบภาพนี้
-                    </button>
-                  </div>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={images.map((i) => i.id)}
+                strategy={rectSortingStrategy}
+              >
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {images.map((img) => (
+                    <SortableTile key={img.id} img={img} onDelete={deleteImage} />
+                  ))}
                 </div>
-              ))}
-            </div>
+              </SortableContext>
+            </DndContext>
           )}
         </section>
       </main>
+    </div>
+  );
+}
+
+function SortableTile({
+  img,
+  onDelete,
+}: {
+  img: GalleryRow;
+  onDelete: (row: GalleryRow) => void;
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
+    useSortable({ id: img.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 10 : undefined,
+    opacity: isDragging ? 0.6 : 1,
+  };
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="group relative rounded overflow-hidden border border-border bg-background"
+    >
+      <img
+        src={img.url}
+        alt={img.caption ?? ""}
+        className="aspect-square w-full object-cover"
+        loading="lazy"
+        draggable={false}
+      />
+      <button
+        {...attributes}
+        {...listeners}
+        aria-label="ลากเพื่อจัดลำดับ"
+        className="absolute left-1 top-1 z-10 rounded bg-black/60 px-1.5 py-1 text-xs text-white/90 cursor-grab active:cursor-grabbing hover:bg-black/80 touch-none"
+      >
+        ⋮⋮
+      </button>
+      <div className="pointer-events-none absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-2">
+        <p className="text-[10px] text-white/90 line-clamp-2">
+          {img.caption || "—"}
+        </p>
+        <p className="text-[10px] text-white/60">{img.category}</p>
+        <button
+          onClick={() => onDelete(img)}
+          className="pointer-events-auto mt-2 text-[10px] text-red-300 hover:text-red-100"
+        >
+          ลบภาพนี้
+        </button>
+      </div>
     </div>
   );
 }
