@@ -58,6 +58,16 @@ import upStageTrio from "@/assets/gallery-stage-trio.jpg.asset.json";
 import upThaifightTeamline from "@/assets/gallery-thaifight-teamline.jpg.asset.json";
 import upOsenmaFriends from "@/assets/gallery-osenma-friends.jpg.asset.json";
 import upCountdownStage from "@/assets/gallery-countdown-stage.jpg.asset.json";
+import upTfSaraburiHosts from "@/assets/gallery-tf-saraburi-hosts.jpg.asset.json";
+import upNakedShow from "@/assets/gallery-naked-show.jpg.asset.json";
+import upTfThailand68 from "@/assets/gallery-tf-thailand68.jpg.asset.json";
+import upTfPresser from "@/assets/gallery-tf-presser.jpg.asset.json";
+import upTfMallFans from "@/assets/gallery-tf-mall-fans.jpg.asset.json";
+import upTfKoratElder from "@/assets/gallery-tf-korat-elder.jpg.asset.json";
+import upTfGiantSwing from "@/assets/gallery-tf-giantswing.jpg.asset.json";
+import upTfMuangdonHandshake from "@/assets/gallery-tf-muangdon-handshake.jpg.asset.json";
+import upTfPressMics from "@/assets/gallery-tf-press-mics.jpg.asset.json";
+import upTfSpainMortatip from "@/assets/gallery-tf-spain-mortatip.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -108,6 +118,16 @@ const SEEDED_UPLOADS = [
   { id: "s46", url: upThaifightTeamline.url, caption: "ประชุมทีมก่อนเริ่มโชว์", category: "thai fight" },
   { id: "s47", url: upOsenmaFriends.url, caption: "ภาพร่วมกับเพื่อนร่วมงาน", category: "archive" },
   { id: "s48", url: upCountdownStage.url, caption: "Thai Fight Countdown บนเวที", category: "thai fight" },
+  { id: "s49", url: upTfSaraburiHosts.url, caption: "THAI FIGHT สระบุรี · พิธีกรคู่บนเวที", category: "thai fight" },
+  { id: "s50", url: upNakedShow.url, caption: "The Naked Show · สัมภาษณ์ข้างเวที", category: "broadcast" },
+  { id: "s51", url: upTfThailand68.url, caption: "THAI FIGHT Thailand 68 · โชว์นักชก", category: "thai fight" },
+  { id: "s52", url: upTfPresser.url, caption: "แถลงข่าว THAI FIGHT ร่วมกับผู้ใหญ่", category: "thai fight" },
+  { id: "s53", url: upTfMallFans.url, caption: "ทักทายแฟนคลับกลางห้าง", category: "event" },
+  { id: "s54", url: upTfKoratElder.url, caption: "THAI FIGHT นครราชสีมา · ต้อนรับผู้ใหญ่", category: "thai fight" },
+  { id: "s55", url: upTfGiantSwing.url, caption: "THAI FIGHT · เวทีเสาชิงช้า", category: "thai fight" },
+  { id: "s56", url: upTfMuangdonHandshake.url, caption: "THAI FIGHT เมืองคอน · จับมือแขก VIP", category: "thai fight" },
+  { id: "s57", url: upTfPressMics.url, caption: "ให้สัมภาษณ์สื่อมวลชนหลายสำนัก", category: "interview" },
+  { id: "s58", url: upTfSpainMortatip.url, caption: "THAI FIGHT Spain · ที่มณฑาทิพย์ฮอลล์", category: "thai fight" },
 ];
 
 export const Route = createFileRoute("/gallery")({
