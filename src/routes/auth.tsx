@@ -313,3 +313,98 @@ function SignedInPanel({
     </div>
   );
 }
+
+function BootstrapPanel({ onDone }: { onDone: (email: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const [token, setToken] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState<
+    { kind: "ok"; email: string } | { kind: "err"; text: string } | null
+  >(null);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!token.trim()) return;
+    setBusy(true);
+    setResult(null);
+    try {
+      const res = await fetch("/api/public/bootstrap-admin", {
+        method: "POST",
+        headers: { "x-bootstrap-token": token.trim() },
+      });
+      const body = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        email?: string;
+        error?: string;
+      };
+      if (!res.ok || !body.ok || !body.email) {
+        const text =
+          res.status === 403
+            ? "Token ไม่ถูกต้อง"
+            : body.error ?? `ล้มเหลว (HTTP ${res.status})`;
+        setResult({ kind: "err", text });
+        return;
+      }
+      setResult({ kind: "ok", email: body.email });
+      setToken("");
+      onDone(body.email);
+    } catch (err) {
+      setResult({
+        kind: "err",
+        text: err instanceof Error ? err.message : "เกิดข้อผิดพลาด",
+      });
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="mt-8 border-t border-border pt-4">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="text-xs text-muted-foreground hover:text-foreground"
+      >
+        {open ? "▾" : "▸"} 🔑 ยืนยันสิทธิ์ Root Admin ด้วย Bootstrap Token
+      </button>
+
+      {open && (
+        <div className="mt-3 space-y-3 rounded-md border border-border bg-card p-3">
+          <p className="text-xs text-muted-foreground">
+            วาง <span className="font-mono">ROOT_ADMIN_BOOTSTRAP_TOKEN</span>{" "}
+            เพื่อสร้าง/รีเซ็ตรหัสผ่านและมอบสิทธิ์ admin
+            ให้กับบัญชีที่กำหนดไว้ใน environment
+          </p>
+          <form onSubmit={submit} className="space-y-2">
+            <input
+              type="password"
+              autoComplete="off"
+              placeholder="Bootstrap token"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 font-mono text-xs"
+            />
+            <button
+              type="submit"
+              disabled={busy || !token.trim()}
+              className="w-full rounded-md border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary hover:bg-primary/20 disabled:opacity-50"
+            >
+              {busy ? "กำลังตรวจสอบ..." : "ยืนยันและซิงค์บัญชี"}
+            </button>
+          </form>
+          {result?.kind === "ok" && (
+            <p className="text-xs text-primary">
+              ✓ ซิงค์สำเร็จ — บัญชี{" "}
+              <span className="font-mono">{result.email}</span>{" "}
+              พร้อมสิทธิ์ admin แล้ว เข้าสู่ระบบด้วยรหัสผ่านจาก{" "}
+              <span className="font-mono">ROOT_ADMIN_PASSWORD</span>
+            </p>
+          )}
+          {result?.kind === "err" && (
+            <p className="text-xs text-destructive">✗ {result.text}</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
