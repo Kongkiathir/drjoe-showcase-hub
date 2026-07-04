@@ -158,6 +158,16 @@ const SEEDED_UPLOADS = [
   { id: "s66", url: upNightRunChiangrai.url, caption: "Night Run for Chiangrai Games", category: "event" },
   { id: "s67", url: upSitpalanKids.url, caption: "ค่ายมวยเด็ก ศิษย์พลัน อยุธยา", category: "archive" },
   { id: "s68", url: upTfNightCrowd.url, caption: "THAI FIGHT กลางคืน · ผู้ชมเต็มลาน", category: "thai fight" },
+  { id: "s69", url: upTfRingSuit.url, caption: "พิธีกรคู่บนเวที THAI FIGHT", category: "thai fight" },
+  { id: "s70", url: upTfKoratStudio.url, caption: "โปรโมต THAI FIGHT โคราช ในสตูดิโอ", category: "broadcast" },
+  { id: "s71", url: upTfRingCamera.url, caption: "กล้องข้างเวที · ภาพขาวดำ", category: "thai fight" },
+  { id: "s72", url: upTfBriefing.url, caption: "ประชุมงานกับตำรวจ", category: "milestone" },
+  { id: "s73", url: upTfChiangmaiDusk.url, caption: "THAI FIGHT เชียงใหม่ · ท้องฟ้ายามเย็น", category: "thai fight" },
+  { id: "s74", url: upTfStudioRitual.url, caption: "ถ่ายทำพิธีมวยไทยในสตูดิโอ", category: "on set" },
+  { id: "s75", url: upTfVipFight.url, caption: "แขก VIP ขึ้นเวที THAI FIGHT", category: "thai fight" },
+  { id: "s76", url: upTfPanelMic.url, caption: "เวทีสัมมนา · พูดหน้าไมค์", category: "event" },
+  { id: "s77", url: upTfOvControl.url, caption: "ห้องคอนโทรลถ่ายทอดสด · ทีมงาน", category: "on set" },
+  { id: "s78", url: upTfNarathiwatRain.url, caption: "THAI FIGHT 600 นราธิวาส · ท่ามกลางสายฝน", category: "thai fight" },
 ];
 
 export const Route = createFileRoute("/gallery")({
