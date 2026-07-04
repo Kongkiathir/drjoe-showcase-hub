@@ -88,6 +88,16 @@ import upTfVipFight from "@/assets/gallery-tf-vip-fight.jpg.asset.json";
 import upTfPanelMic from "@/assets/gallery-tf-panel-mic.jpg.asset.json";
 import upTfOvControl from "@/assets/gallery-tf-ov-control.jpg.asset.json";
 import upTfNarathiwatRain from "@/assets/gallery-tf-narathiwat-rain.jpg.asset.json";
+import upLecturePanel from "@/assets/gallery-lecture-panel.jpg.asset.json";
+import upBoardroomGroup from "@/assets/gallery-boardroom-group.jpg.asset.json";
+import upSeminarHall from "@/assets/gallery-seminar-hall.jpg.asset.json";
+import upPanelMicClose from "@/assets/gallery-panel-mic-close.jpg.asset.json";
+import upKeynoteScreen from "@/assets/gallery-keynote-screen.jpg.asset.json";
+import upTrainingFists from "@/assets/gallery-training-fists.jpg.asset.json";
+import upMuaySuvarnabhumi from "@/assets/gallery-muay-suvarnabhumi.jpg.asset.json";
+import upAdvisorDesk from "@/assets/gallery-advisor-desk.jpg.asset.json";
+import upCommitteeBlue from "@/assets/gallery-committee-blue.jpg.asset.json";
+import upSatHandover from "@/assets/gallery-sat-handover.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -168,7 +178,16 @@ const SEEDED_UPLOADS = [
   { id: "s76", url: upTfPanelMic.url, caption: "THAI FIGHT BEGINS · ถ่ายทอดสดในสตูดิโอ", category: "broadcast" },
   { id: "s77", url: upTfOvControl.url, caption: "ห้องคอนโทรลถ่ายทอดสด · สั่งคิวหน้ามอนิเตอร์", category: "on set" },
   { id: "s78", url: upTfNarathiwatRain.url, caption: "แสนชัย ขึ้นเวที THAI FIGHT · พิธีกรร่วมโชว์", category: "thai fight" },
-
+  { id: "s79", url: upLecturePanel.url, caption: "บรรยายวิชาการ · ดร.นพรัตน์ พุทธรัตนมณี", category: "milestone" },
+  { id: "s80", url: upBoardroomGroup.url, caption: "ประชุมคณะกรรมการ · ห้องประชุมใหญ่", category: "milestone" },
+  { id: "s81", url: upSeminarHall.url, caption: "บรรยายในสัมมนา · ผู้ฟังเต็มห้อง", category: "event" },
+  { id: "s82", url: upPanelMicClose.url, caption: "เสวนาบนเวที · โคลสอัพหน้าไมค์", category: "interview" },
+  { id: "s83", url: upKeynoteScreen.url, caption: "คีย์โน้ตหน้าจอโปรเจกเตอร์", category: "event" },
+  { id: "s84", url: upTrainingFists.url, caption: "อบรมหลักสูตรกีฬามวย · ชูกำปั้น", category: "milestone" },
+  { id: "s85", url: upMuaySuvarnabhumi.url, caption: "Muay Suvarnabhumi Conference · ภาพหมู่", category: "milestone" },
+  { id: "s86", url: upAdvisorDesk.url, caption: "ที่ปรึกษาคณะกรรมาธิการ · โต๊ะประชุม", category: "milestone" },
+  { id: "s87", url: upCommitteeBlue.url, caption: "ประชุมคณะกรรมาธิการ · ในสภา", category: "milestone" },
+  { id: "s88", url: upSatHandover.url, caption: "การกีฬาแห่งประเทศไทย · ส่งมอบ Sports Industry", category: "milestone" },
 ];
 
 export const Route = createFileRoute("/gallery")({
