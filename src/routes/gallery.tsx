@@ -20,6 +20,16 @@ import upPerf from "@/assets/gallery-performance.jpg.asset.json";
 import upTvteam from "@/assets/gallery-tvteam.jpg.asset.json";
 import upOnsetSmile from "@/assets/gallery-onset-smile.jpg.asset.json";
 import upThreeManDown from "@/assets/gallery-threemandown.jpg.asset.json";
+import upKrasae from "@/assets/gallery-krasae.jpg.asset.json";
+import upTvPanel2 from "@/assets/gallery-tvpanel2.jpg.asset.json";
+import upKmitl from "@/assets/gallery-kmitl.jpg.asset.json";
+import upListener from "@/assets/gallery-listener.jpg.asset.json";
+import upEditRoom from "@/assets/gallery-editroom.jpg.asset.json";
+import upJump from "@/assets/gallery-jump.jpg.asset.json";
+import upBtsBoxes from "@/assets/gallery-bts-boxes.jpg.asset.json";
+import upTrio from "@/assets/gallery-trio.jpg.asset.json";
+import upF16 from "@/assets/gallery-f16.jpg.asset.json";
+import upPortrait2 from "@/assets/gallery-portrait2.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -32,6 +42,16 @@ const SEEDED_UPLOADS = [
   { id: "s8", url: upTvteam.url, caption: "ทีมงานรายการโทรทัศน์", category: "on set" },
   { id: "s9", url: upOnsetSmile.url, caption: "บรรยากาศกองถ่าย", category: "on set" },
   { id: "s10", url: upThreeManDown.url, caption: "คอนเสิร์ต Three Man Down", category: "event" },
+  { id: "s11", url: upKrasae.url, caption: "รายการกระแสแต่เช้า · เซียนแปะโรงสี", category: "broadcast" },
+  { id: "s12", url: upTvPanel2.url, caption: "แขกรับเชิญรายการทอล์กโชว์", category: "broadcast" },
+  { id: "s13", url: upKmitl.url, caption: "KMITL Family · ทีมงานเวที", category: "stage" },
+  { id: "s14", url: upListener.url, caption: "The Listener EP.1 · 2.2M views", category: "podcast" },
+  { id: "s15", url: upEditRoom.url, caption: "ห้องตัดต่อยุคแรก", category: "archive" },
+  { id: "s16", url: upJump.url, caption: "แอ็กชันคาแรกเตอร์ กระโดดกลางเซ็ต", category: "portrait" },
+  { id: "s17", url: upBtsBoxes.url, caption: "เบื้องหลังกองถ่าย เซ็ตกล่องกระดาษ", category: "on set" },
+  { id: "s18", url: upTrio.url, caption: "แขกรับเชิญพอดแคสต์ 3 คน", category: "podcast" },
+  { id: "s19", url: upF16.url, caption: "กองถ่ายที่ฐานทัพ F-16", category: "archive" },
+  { id: "s20", url: upPortrait2.url, caption: "โปรไฟล์ภาพถ่ายทางการ", category: "portrait" },
 ];
 
 export const Route = createFileRoute("/gallery")({
