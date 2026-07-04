@@ -62,6 +62,7 @@ type GalleryRow = {
   caption: string | null;
   category: string;
   created_at: string;
+  sort_order: number;
 };
 
 function AdminPage() {
