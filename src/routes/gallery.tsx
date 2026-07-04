@@ -360,10 +360,18 @@ const CATEGORIES: Category[] = [
   },
 ];
 
+type LightboxItem = {
+  src: string;
+  title?: string;
+  caption?: string;
+  category: string;
+};
+
 function GalleryPage() {
   const [uploaded, setUploaded] = useState<
     { id: string; url: string; caption: string | null; category: string }[]
   >(SEEDED_UPLOADS);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
     supabase
@@ -376,17 +384,56 @@ function GalleryPage() {
       });
   }, []);
 
+  const flat = useMemo<LightboxItem[]>(() => {
+    const up: LightboxItem[] = uploaded.map((u) => ({
+      src: u.url,
+      caption: u.caption ?? undefined,
+      category: u.category,
+    }));
+    const cats: LightboxItem[] = CATEGORIES.flatMap((c) =>
+      c.shots.map((s) => ({
+        src: s.src,
+        title: s.title,
+        caption: s.caption,
+        category: c.title,
+      })),
+    );
+    return [...up, ...cats];
+  }, [uploaded]);
+
+  const uploadedCount = uploaded.length;
+  const openAt = useCallback((i: number) => setLightboxIndex(i), []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
       <main className="container-editorial pb-32">
-        {uploaded.length > 0 && <UploadedBlock images={uploaded} />}
-        {CATEGORIES.map((cat) => (
-          <CategoryBlock key={cat.slug} cat={cat} />
-        ))}
+        {uploaded.length > 0 && (
+          <UploadedBlock images={uploaded} onOpen={(i) => openAt(i)} />
+        )}
+        {CATEGORIES.map((cat, catIdx) => {
+          const offset =
+            uploadedCount +
+            CATEGORIES.slice(0, catIdx).reduce((n, c) => n + c.shots.length, 0);
+          return (
+            <CategoryBlock
+              key={cat.slug}
+              cat={cat}
+              onOpen={(i) => openAt(offset + i)}
+            />
+          );
+        })}
       </main>
       <Footer />
+      {lightboxIndex !== null && (
+        <Lightbox
+          items={flat}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onChange={setLightboxIndex}
+        />
+      )}
     </div>
   );
 }
