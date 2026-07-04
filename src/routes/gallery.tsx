@@ -78,6 +78,16 @@ import upMuaythaiDayOfficials from "@/assets/gallery-muaythai-day-officials.jpg.
 import upNightRunChiangrai from "@/assets/gallery-night-run-chiangrai.jpg.asset.json";
 import upSitpalanKids from "@/assets/gallery-sitpalan-kids.jpg.asset.json";
 import upTfNightCrowd from "@/assets/gallery-tf-night-crowd.jpg.asset.json";
+import upTfRingSuit from "@/assets/gallery-tf-ring-suit.jpg.asset.json";
+import upTfKoratStudio from "@/assets/gallery-tf-korat-studio.jpg.asset.json";
+import upTfRingCamera from "@/assets/gallery-tf-ring-camera.jpg.asset.json";
+import upTfBriefing from "@/assets/gallery-tf-briefing.jpg.asset.json";
+import upTfChiangmaiDusk from "@/assets/gallery-tf-chiangmai-dusk.jpg.asset.json";
+import upTfStudioRitual from "@/assets/gallery-tf-studio-ritual.jpg.asset.json";
+import upTfVipFight from "@/assets/gallery-tf-vip-fight.jpg.asset.json";
+import upTfPanelMic from "@/assets/gallery-tf-panel-mic.jpg.asset.json";
+import upTfOvControl from "@/assets/gallery-tf-ov-control.jpg.asset.json";
+import upTfNarathiwatRain from "@/assets/gallery-tf-narathiwat-rain.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -148,6 +158,16 @@ const SEEDED_UPLOADS = [
   { id: "s66", url: upNightRunChiangrai.url, caption: "Night Run for Chiangrai Games", category: "event" },
   { id: "s67", url: upSitpalanKids.url, caption: "ค่ายมวยเด็ก ศิษย์พลัน อยุธยา", category: "archive" },
   { id: "s68", url: upTfNightCrowd.url, caption: "THAI FIGHT กลางคืน · ผู้ชมเต็มลาน", category: "thai fight" },
+  { id: "s69", url: upTfRingSuit.url, caption: "พิธีกรคู่บนเวที THAI FIGHT", category: "thai fight" },
+  { id: "s70", url: upTfKoratStudio.url, caption: "โปรโมต THAI FIGHT โคราช ในสตูดิโอ", category: "broadcast" },
+  { id: "s71", url: upTfRingCamera.url, caption: "กล้องข้างเวที · ภาพขาวดำ", category: "thai fight" },
+  { id: "s72", url: upTfBriefing.url, caption: "ประชุมงานกับตำรวจ", category: "milestone" },
+  { id: "s73", url: upTfChiangmaiDusk.url, caption: "THAI FIGHT เชียงใหม่ · ท้องฟ้ายามเย็น", category: "thai fight" },
+  { id: "s74", url: upTfStudioRitual.url, caption: "ถ่ายทำพิธีมวยไทยในสตูดิโอ", category: "on set" },
+  { id: "s75", url: upTfVipFight.url, caption: "แขก VIP ขึ้นเวที THAI FIGHT", category: "thai fight" },
+  { id: "s76", url: upTfPanelMic.url, caption: "เวทีสัมมนา · พูดหน้าไมค์", category: "event" },
+  { id: "s77", url: upTfOvControl.url, caption: "ห้องคอนโทรลถ่ายทอดสด · ทีมงาน", category: "on set" },
+  { id: "s78", url: upTfNarathiwatRain.url, caption: "THAI FIGHT 600 นราธิวาส · ท่ามกลางสายฝน", category: "thai fight" },
 ];
 
 export const Route = createFileRoute("/gallery")({
