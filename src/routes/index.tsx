@@ -612,16 +612,16 @@ function Skills() {
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4 space-y-6">
             <InfoRow k="Location" v="Bangkok, Thailand" />
-            <InfoRow k="Email" v="joethaifight@gmail.com" />
-            <InfoRow k="Phone" v="089-453-5252" />
-            <InfoRow k="Focus" v="AI · Innovation · Education" />
-            <InfoRow k="Languages" v="ไทย · English · 中文 (basic)" />
+            <InfoRow k="Email" v="JOETHAIFIGHT@GMAIL.COM" />
+            <InfoRow k="Affiliation" v="KMITL · Industrial Mgmt. & Innovation" />
+            <InfoRow k="Focus" v="Muay Thai · Sport Media · AI · IP" />
+            <InfoRow k="Languages" v="ไทย · English" />
 
             <div className="pt-6">
-              <div className="section-label mb-4">Scholarships</div>
+              <div className="section-label mb-4">Affiliations</div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                ทุนพัฒนาอาจารย์ระดับปริญญาเอก · ทุนวิจัย สกสว. · Fulbright
-                Visiting Scholar
+                THAI FIGHT · Originals Studio · IDOL GAMES · MUAY O.G. ·
+                College of Industrial Management and Innovation, KMITL
               </p>
             </div>
           </div>
