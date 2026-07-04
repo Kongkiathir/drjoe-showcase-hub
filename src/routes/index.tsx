@@ -684,18 +684,18 @@ function Resume() {
             ))}
           </div>
           <div className="lg:col-span-5 space-y-6">
-            <div className="section-label">Research Interests</div>
+            <div className="section-label">Research & Focus Areas</div>
             <div className="flex flex-wrap gap-2">
               {[
-                "Generative AI",
-                "LLM Fine-tuning",
-                "Computer Vision",
-                "Reinforcement Learning",
-                "Human-AI Interaction",
-                "AI Ethics",
-                "Edge Computing",
-                "AR / VR / XR",
-                "EdTech",
+                "Muay Thai Ecosystem 6.0",
+                "Digital Infrastructure",
+                "AI Integration",
+                "Global IP Management",
+                "Sport Media Strategy",
+                "Live Broadcast Production",
+                "Marketing Technology",
+                "Cultural Heritage (UNESCO)",
+                "Sports Entertainment",
               ].map((t) => (
                 <span
                   key={t}
@@ -706,12 +706,13 @@ function Resume() {
               ))}
             </div>
 
-            <div className="pt-6 section-label">Selected Committees</div>
+            <div className="pt-6 section-label">Selected Roles & Committees</div>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>· คณะกรรมการยุทธศาสตร์ AI แห่งชาติ</li>
-              <li>· ที่ปรึกษาสมาคมปัญญาประดิษฐ์ประเทศไทย (AIAT)</li>
-              <li>· กรรมการวิชาการหลักสูตรบัณฑิตศึกษาด้าน AI</li>
-              <li>· Editorial Board · Journal of Applied AI</li>
+              <li>· CMOO · บริษัท ไทยไฟท์ จำกัด</li>
+              <li>· CEO · บริษัท ออริจินอลส์ สตูดิโอ จำกัด</li>
+              <li>· Founder · บริษัท ไอดอลเกมส์ จำกัด (IDOL FIGHT / IDOL LEAGUE)</li>
+              <li>· คณะทำงานขับเคลื่อนมวยไทยสู่โอลิมปิก (2022)</li>
+              <li>· ผู้ทรงคุณวุฒิมรดกภูมิปัญญามวยไทย เสนอ UNESCO (2023)</li>
             </ul>
           </div>
         </div>
