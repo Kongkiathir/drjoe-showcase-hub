@@ -50,6 +50,14 @@ function AuthPage() {
     refreshSession();
   }, []);
 
+  // Auto-redirect to /admin when signed in and admin
+  useEffect(() => {
+    if (session.status === "signed-in" && session.isAdmin) {
+      navigate({ to: "/admin" });
+    }
+  }, [session, navigate]);
+
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
