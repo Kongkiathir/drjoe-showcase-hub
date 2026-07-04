@@ -98,6 +98,16 @@ import upMuaySuvarnabhumi from "@/assets/gallery-muay-suvarnabhumi.jpg.asset.jso
 import upAdvisorDesk from "@/assets/gallery-advisor-desk.jpg.asset.json";
 import upCommitteeBlue from "@/assets/gallery-committee-blue.jpg.asset.json";
 import upSatHandover from "@/assets/gallery-sat-handover.jpg.asset.json";
+import upMyanmarLethwei from "@/assets/gallery-myanmar-lethwei.jpg.asset.json";
+import upTrainingCerts from "@/assets/gallery-training-certs.jpg.asset.json";
+import upKmitlAwards from "@/assets/gallery-kmitl-awards.jpg.asset.json";
+import upTraining2564 from "@/assets/gallery-training-2564.jpg.asset.json";
+import upSportEconomics from "@/assets/gallery-sport-economics.jpg.asset.json";
+import upSatPanel4 from "@/assets/gallery-sat-panel4.jpg.asset.json";
+import upMetaverseTalk from "@/assets/gallery-metaverse-talk.jpg.asset.json";
+import upMontatipUdon from "@/assets/gallery-montatip-udon.jpg.asset.json";
+import upMuaythaiReform from "@/assets/gallery-muaythai-reform.jpg.asset.json";
+import upTrainingThumbsup from "@/assets/gallery-training-thumbsup.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
