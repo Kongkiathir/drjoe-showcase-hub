@@ -68,6 +68,16 @@ import upTfGiantSwing from "@/assets/gallery-tf-giantswing.jpg.asset.json";
 import upTfMuangdonHandshake from "@/assets/gallery-tf-muangdon-handshake.jpg.asset.json";
 import upTfPressMics from "@/assets/gallery-tf-press-mics.jpg.asset.json";
 import upTfSpainMortatip from "@/assets/gallery-tf-spain-mortatip.jpg.asset.json";
+import upMuaythaiDayGroup from "@/assets/gallery-muaythai-day-group.jpg.asset.json";
+import upTfArenaCrowd from "@/assets/gallery-tf-arena-crowd.jpg.asset.json";
+import upTfPyro from "@/assets/gallery-tf-pyro.jpg.asset.json";
+import upTfFightersOutdoor from "@/assets/gallery-tf-fighters-outdoor.jpg.asset.json";
+import upYellowTvshow from "@/assets/gallery-yellow-tvshow.jpg.asset.json";
+import upTfPmFighters from "@/assets/gallery-tf-pm-fighters.jpg.asset.json";
+import upMuaythaiDayOfficials from "@/assets/gallery-muaythai-day-officials.jpg.asset.json";
+import upNightRunChiangrai from "@/assets/gallery-night-run-chiangrai.jpg.asset.json";
+import upSitpalanKids from "@/assets/gallery-sitpalan-kids.jpg.asset.json";
+import upTfNightCrowd from "@/assets/gallery-tf-night-crowd.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -128,6 +138,16 @@ const SEEDED_UPLOADS = [
   { id: "s56", url: upTfMuangdonHandshake.url, caption: "THAI FIGHT เมืองคอน · จับมือแขก VIP", category: "thai fight" },
   { id: "s57", url: upTfPressMics.url, caption: "ให้สัมภาษณ์สื่อมวลชนหลายสำนัก", category: "interview" },
   { id: "s58", url: upTfSpainMortatip.url, caption: "THAI FIGHT Spain · ที่มณฑาทิพย์ฮอลล์", category: "thai fight" },
+  { id: "s59", url: upMuaythaiDayGroup.url, caption: "วันมวยไทย 2566 · ภาพหมู่นักชก", category: "milestone" },
+  { id: "s60", url: upTfArenaCrowd.url, caption: "THAI FIGHT อารีนา · แสงไฟเต็มฮอลล์", category: "thai fight" },
+  { id: "s61", url: upTfPyro.url, caption: "โชว์ pyro เปิดเวที THAI FIGHT", category: "thai fight" },
+  { id: "s62", url: upTfFightersOutdoor.url, caption: "รวมนักชก THAI FIGHT กลางแจ้ง", category: "archive" },
+  { id: "s63", url: upYellowTvshow.url, caption: "บันทึกรายการโทรทัศน์ · ทีมเสื้อเหลือง", category: "broadcast" },
+  { id: "s64", url: upTfPmFighters.url, caption: "นักชก THAI FIGHT เข้าพบนายกฯ", category: "milestone" },
+  { id: "s65", url: upMuaythaiDayOfficials.url, caption: "วันมวยไทย · ผู้ใหญ่ร่วมงาน", category: "milestone" },
+  { id: "s66", url: upNightRunChiangrai.url, caption: "Night Run for Chiangrai Games", category: "event" },
+  { id: "s67", url: upSitpalanKids.url, caption: "ค่ายมวยเด็ก ศิษย์พลัน อยุธยา", category: "archive" },
+  { id: "s68", url: upTfNightCrowd.url, caption: "THAI FIGHT กลางคืน · ผู้ชมเต็มลาน", category: "thai fight" },
 ];
 
 export const Route = createFileRoute("/gallery")({
