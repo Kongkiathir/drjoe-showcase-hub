@@ -98,6 +98,16 @@ import upMuaySuvarnabhumi from "@/assets/gallery-muay-suvarnabhumi.jpg.asset.jso
 import upAdvisorDesk from "@/assets/gallery-advisor-desk.jpg.asset.json";
 import upCommitteeBlue from "@/assets/gallery-committee-blue.jpg.asset.json";
 import upSatHandover from "@/assets/gallery-sat-handover.jpg.asset.json";
+import upMyanmarLethwei from "@/assets/gallery-myanmar-lethwei.jpg.asset.json";
+import upTrainingCerts from "@/assets/gallery-training-certs.jpg.asset.json";
+import upKmitlAwards from "@/assets/gallery-kmitl-awards.jpg.asset.json";
+import upTraining2564 from "@/assets/gallery-training-2564.jpg.asset.json";
+import upSportEconomics from "@/assets/gallery-sport-economics.jpg.asset.json";
+import upSatPanel4 from "@/assets/gallery-sat-panel4.jpg.asset.json";
+import upMetaverseTalk from "@/assets/gallery-metaverse-talk.jpg.asset.json";
+import upMontatipUdon from "@/assets/gallery-montatip-udon.jpg.asset.json";
+import upMuaythaiReform from "@/assets/gallery-muaythai-reform.jpg.asset.json";
+import upTrainingThumbsup from "@/assets/gallery-training-thumbsup.jpg.asset.json";
 
 const SEEDED_UPLOADS = [
   { id: "s1", url: upGreen.url, caption: "เบื้องหลังถ่ายทำ กรีนสกรีน", category: "on set" },
@@ -188,6 +198,16 @@ const SEEDED_UPLOADS = [
   { id: "s86", url: upAdvisorDesk.url, caption: "ที่ปรึกษาคณะกรรมาธิการ · โต๊ะประชุม", category: "milestone" },
   { id: "s87", url: upCommitteeBlue.url, caption: "ประชุมคณะกรรมาธิการ · ในสภา", category: "milestone" },
   { id: "s88", url: upSatHandover.url, caption: "การกีฬาแห่งประเทศไทย · ส่งมอบ Sports Industry", category: "milestone" },
+  { id: "s89", url: upMyanmarLethwei.url, caption: "History of Myanmar Lethwei · เยือนพม่า", category: "milestone" },
+  { id: "s90", url: upTrainingCerts.url, caption: "มอบใบประกาศ · หลักสูตรมาตรฐานมวย", category: "milestone" },
+  { id: "s91", url: upKmitlAwards.url, caption: "KMITL Innovation Expo 2567 · รับโล่", category: "milestone" },
+  { id: "s92", url: upTraining2564.url, caption: "อบรมหลักสูตรมาตรฐาน ปี 2564", category: "milestone" },
+  { id: "s93", url: upSportEconomics.url, caption: "เสวนามูลค่าเศรษฐกิจอุตสาหกรรมกีฬา 2566", category: "event" },
+  { id: "s94", url: upSatPanel4.url, caption: "SAT × CA · ประชุมเผยแพร่ครั้งที่ 4", category: "event" },
+  { id: "s95", url: upMetaverseTalk.url, caption: "บรรยาย Metaverse × มวยไทย", category: "event" },
+  { id: "s96", url: upMontatipUdon.url, caption: "Montatip Hall อุดรธานี · เสวนาบนเวที", category: "event" },
+  { id: "s97", url: upMuaythaiReform.url, caption: "เสวนาปฏิรูปมาตรฐานมวยไทยอาชีพ", category: "milestone" },
+  { id: "s98", url: upTrainingThumbsup.url, caption: "อบรมมาตรฐานมวย · ภาพหมู่ชูโป้ง", category: "milestone" },
 ];
 
 export const Route = createFileRoute("/gallery")({
