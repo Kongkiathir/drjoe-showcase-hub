@@ -178,7 +178,16 @@ const SEEDED_UPLOADS = [
   { id: "s76", url: upTfPanelMic.url, caption: "THAI FIGHT BEGINS · ถ่ายทอดสดในสตูดิโอ", category: "broadcast" },
   { id: "s77", url: upTfOvControl.url, caption: "ห้องคอนโทรลถ่ายทอดสด · สั่งคิวหน้ามอนิเตอร์", category: "on set" },
   { id: "s78", url: upTfNarathiwatRain.url, caption: "แสนชัย ขึ้นเวที THAI FIGHT · พิธีกรร่วมโชว์", category: "thai fight" },
-
+  { id: "s79", url: upLecturePanel.url, caption: "บรรยายวิชาการ · ดร.นพรัตน์ พุทธรัตนมณี", category: "milestone" },
+  { id: "s80", url: upBoardroomGroup.url, caption: "ประชุมคณะกรรมการ · ห้องประชุมใหญ่", category: "milestone" },
+  { id: "s81", url: upSeminarHall.url, caption: "บรรยายในสัมมนา · ผู้ฟังเต็มห้อง", category: "event" },
+  { id: "s82", url: upPanelMicClose.url, caption: "เสวนาบนเวที · โคลสอัพหน้าไมค์", category: "interview" },
+  { id: "s83", url: upKeynoteScreen.url, caption: "คีย์โน้ตหน้าจอโปรเจกเตอร์", category: "event" },
+  { id: "s84", url: upTrainingFists.url, caption: "อบรมหลักสูตรกีฬามวย · ชูกำปั้น", category: "milestone" },
+  { id: "s85", url: upMuaySuvarnabhumi.url, caption: "Muay Suvarnabhumi Conference · ภาพหมู่", category: "milestone" },
+  { id: "s86", url: upAdvisorDesk.url, caption: "ที่ปรึกษาคณะกรรมาธิการ · โต๊ะประชุม", category: "milestone" },
+  { id: "s87", url: upCommitteeBlue.url, caption: "ประชุมคณะกรรมาธิการ · ในสภา", category: "milestone" },
+  { id: "s88", url: upSatHandover.url, caption: "การกีฬาแห่งประเทศไทย · ส่งมอบ Sports Industry", category: "milestone" },
 ];
 
 export const Route = createFileRoute("/gallery")({
