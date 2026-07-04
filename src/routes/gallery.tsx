@@ -198,6 +198,16 @@ const SEEDED_UPLOADS = [
   { id: "s86", url: upAdvisorDesk.url, caption: "ที่ปรึกษาคณะกรรมาธิการ · โต๊ะประชุม", category: "milestone" },
   { id: "s87", url: upCommitteeBlue.url, caption: "ประชุมคณะกรรมาธิการ · ในสภา", category: "milestone" },
   { id: "s88", url: upSatHandover.url, caption: "การกีฬาแห่งประเทศไทย · ส่งมอบ Sports Industry", category: "milestone" },
+  { id: "s89", url: upMyanmarLethwei.url, caption: "History of Myanmar Lethwei · เยือนพม่า", category: "milestone" },
+  { id: "s90", url: upTrainingCerts.url, caption: "มอบใบประกาศ · หลักสูตรมาตรฐานมวย", category: "milestone" },
+  { id: "s91", url: upKmitlAwards.url, caption: "KMITL Innovation Expo 2567 · รับโล่", category: "milestone" },
+  { id: "s92", url: upTraining2564.url, caption: "อบรมหลักสูตรมาตรฐาน ปี 2564", category: "milestone" },
+  { id: "s93", url: upSportEconomics.url, caption: "เสวนามูลค่าเศรษฐกิจอุตสาหกรรมกีฬา 2566", category: "event" },
+  { id: "s94", url: upSatPanel4.url, caption: "SAT × CA · ประชุมเผยแพร่ครั้งที่ 4", category: "event" },
+  { id: "s95", url: upMetaverseTalk.url, caption: "บรรยาย Metaverse × มวยไทย", category: "event" },
+  { id: "s96", url: upMontatipUdon.url, caption: "Montatip Hall อุดรธานี · เสวนาบนเวที", category: "event" },
+  { id: "s97", url: upMuaythaiReform.url, caption: "เสวนาปฏิรูปมาตรฐานมวยไทยอาชีพ", category: "milestone" },
+  { id: "s98", url: upTrainingThumbsup.url, caption: "อบรมมาตรฐานมวย · ภาพหมู่ชูโป้ง", category: "milestone" },
 ];
 
 export const Route = createFileRoute("/gallery")({
