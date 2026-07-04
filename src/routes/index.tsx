@@ -561,23 +561,27 @@ function About() {
             property — decoding Thailand's combat heritage."
           </p>
           <p>
-            Dr. Joe, Nopparat Puttarattanamane, is a Thai sport media
-            executive, Muay Thai innovator, researcher, and founder of
-            Muay Thai Intelligence initiatives. With more than 30 years of
-            experience across television, film, live sport production,
-            THAI FIGHT, IDOL FIGHT, IDOL LEAGUE, MUAY O.G., and Muay Thai
-            Archives, he is leading the transformation of Muay Thai from
-            fight archives into data, AI, sport technology, and digital
-            intellectual property.
+            Dr. Nopparat Puttarattanamane is a distinguished senior executive
+            and strategist in the global sports, media, and entertainment
+            industries. He serves as Chief Marketing Operations Officer of
+            Thai Fight Co., Ltd., Chief Executive Officer of Originals Studio
+            Co., Ltd., and Founder of Idol Games Co., Ltd. — the force behind
+            IDOL FIGHT and IDOL LEAGUE. He holds a PhD from the College of
+            Industrial Management and Innovation, KMITL, focusing on the
+            Muay Thai Ecosystem 6.0 framework: digital infrastructure,
+            AI integration, and global intellectual property management.
           </p>
           <p className="text-muted-foreground">
-            ดร.โจ นพรัตน์ พุทธรัตนมณี คือผู้บริหารด้านสื่อกีฬา
-            นักสร้างสรรค์นวัตกรรมมวยไทย นักวิจัย และผู้ริเริ่มแนวคิด
-            Muay Thai Intelligence ด้วยประสบการณ์มากกว่า 30 ปีในวงการโทรทัศน์
-            ภาพยนตร์ การผลิตกีฬาสด THAI FIGHT, IDOL FIGHT, IDOL LEAGUE,
-            MUAY O.G. และ Muay Thai Archives
-            เขากำลังผลักดันการเปลี่ยนมวยไทยจากคลังไฟต์ในอดีต ไปสู่ข้อมูล
-            ปัญญาประดิษฐ์ เทคโนโลยีกีฬา และทรัพย์สินทางปัญญาดิจิทัล
+            ดร.นพรัตน์ พุทธรัตนมณี (พี่โจ) เป็นผู้บริหารระดับสูงและผู้เชี่ยวชาญ
+            ด้านกลยุทธ์ในอุตสาหกรรมมวยไทย สื่อ และความบันเทิงระดับสากล
+            ปัจจุบันดำรงตำแหน่ง ประธานเจ้าหน้าที่ฝ่ายผลิตและการตลาด
+            บริษัท ไทยไฟท์ จำกัด, ประธานเจ้าหน้าที่บริหาร บริษัท ออริจินอลส์
+            สตูดิโอ จำกัด และผู้ก่อตั้ง บริษัท ไอดอลเกมส์ จำกัด ผู้ผลิต
+            IDOL FIGHT และ IDOL LEAGUE สำเร็จการศึกษาระดับปริญญาเอกจาก
+            วิทยาลัยการจัดการอุตสาหกรรมและนวัตกรรม สถาบันเทคโนโลยีพระจอมเกล้า
+            เจ้าคุณทหารลาดกระบัง (KMITL) มุ่งขับเคลื่อนระบบนิเวศมวยไทยสู่
+            Muay Thai Ecosystem 6.0 ด้วยโครงสร้างพื้นฐานดิจิทัล AI
+            และการบริหารทรัพย์สินทางปัญญาระดับโลก
           </p>
 
           <div className="grid grid-cols-2 gap-px bg-border mt-12">
