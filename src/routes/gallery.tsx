@@ -162,17 +162,78 @@ const CATEGORIES: Category[] = [
 ];
 
 function GalleryPage() {
+  const [uploaded, setUploaded] = useState<
+    { id: string; url: string; caption: string | null; category: string }[]
+  >([]);
+
+  useEffect(() => {
+    supabase
+      .from("gallery_images")
+      .select("id,url,caption,category")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setUploaded(data ?? []));
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
       <main className="container-editorial pb-32">
+        {uploaded.length > 0 && <UploadedBlock images={uploaded} />}
         {CATEGORIES.map((cat) => (
           <CategoryBlock key={cat.slug} cat={cat} />
         ))}
       </main>
       <Footer />
     </div>
+  );
+}
+
+function UploadedBlock({
+  images,
+}: {
+  images: { id: string; url: string; caption: string | null; category: string }[];
+}) {
+  return (
+    <section id="latest" className="pt-24 scroll-mt-24">
+      <div className="flex items-baseline gap-4 mb-3">
+        <span className="mono text-xs text-primary">00</span>
+        <span className="h-px flex-1 bg-border" />
+        <span className="mono text-[10px] text-muted-foreground">
+          {images.length} {images.length === 1 ? "frame" : "frames"}
+        </span>
+      </div>
+      <h2 className="font-display text-3xl md:text-5xl tracking-tight">
+        Latest Uploads
+      </h2>
+      <div className="mt-2 text-muted-foreground">อัปเดตล่าสุด</div>
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {images.map((img) => (
+          <figure
+            key={img.id}
+            className="group relative overflow-hidden rounded-lg border border-border bg-card aspect-square"
+          >
+            <img
+              src={img.url}
+              alt={img.caption ?? ""}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {img.caption && (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mono text-[10px] text-primary tracking-widest">
+                    {img.category}
+                  </div>
+                  <div className="text-xs mt-1 leading-relaxed">{img.caption}</div>
+                </figcaption>
+              </>
+            )}
+          </figure>
+        ))}
+      </div>
+    </section>
   );
 }
 
