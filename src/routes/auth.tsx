@@ -13,6 +13,11 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
+type SessionState =
+  | { status: "loading" }
+  | { status: "anon" }
+  | { status: "signed-in"; email: string; userId: string; isAdmin: boolean };
+
 function AuthPage() {
   const navigate = useNavigate();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
@@ -20,12 +25,31 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
+  const [session, setSession] = useState<SessionState>({ status: "loading" });
+
+  async function refreshSession() {
+    const { data } = await supabase.auth.getUser();
+    if (!data.user) {
+      setSession({ status: "anon" });
+      return;
+    }
+    const { data: role } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", data.user.id)
+      .eq("role", "admin")
+      .maybeSingle();
+    setSession({
+      status: "signed-in",
+      email: data.user.email ?? "",
+      userId: data.user.id,
+      isAdmin: !!role,
+    });
+  }
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) navigate({ to: "/admin" });
-    });
-  }, [navigate]);
+    refreshSession();
+  }, []);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -43,13 +67,35 @@ function AuthPage() {
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: "/admin" });
+        await refreshSession();
       }
     } catch (err) {
       setMsg(err instanceof Error ? err.message : "เกิดข้อผิดพลาด");
     } finally {
       setLoading(false);
     }
+  }
+
+  if (session.status === "loading") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background text-sm text-muted-foreground">
+        กำลังโหลด…
+      </div>
+    );
+  }
+
+  if (session.status === "signed-in") {
+    return (
+      <SignedInPanel
+        email={session.email}
+        isAdmin={session.isAdmin}
+        onSignOut={async () => {
+          await supabase.auth.signOut();
+          setSession({ status: "anon" });
+        }}
+        onGoAdmin={() => navigate({ to: "/admin" })}
+      />
+    );
   }
 
   return (
@@ -104,6 +150,158 @@ function AuthPage() {
             ? "ยังไม่มีบัญชี? สมัครที่นี่"
             : "มีบัญชีอยู่แล้ว? เข้าสู่ระบบ"}
         </button>
+      </div>
+    </div>
+  );
+}
+
+function SignedInPanel({
+  email,
+  isAdmin,
+  onSignOut,
+  onGoAdmin,
+}: {
+  email: string;
+  isAdmin: boolean;
+  onSignOut: () => void | Promise<void>;
+  onGoAdmin: () => void;
+}) {
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setMsg(null);
+
+    if (next.length < 8) {
+      setMsg({ kind: "err", text: "รหัสผ่านใหม่ต้องยาวอย่างน้อย 8 ตัวอักษร" });
+      return;
+    }
+    if (next !== confirm) {
+      setMsg({ kind: "err", text: "รหัสผ่านใหม่และการยืนยันไม่ตรงกัน" });
+      return;
+    }
+    if (next === current) {
+      setMsg({ kind: "err", text: "รหัสผ่านใหม่ต้องต่างจากรหัสผ่านเดิม" });
+      return;
+    }
+
+    setBusy(true);
+    try {
+      // Re-verify current password before allowing change
+      const { error: verifyErr } = await supabase.auth.signInWithPassword({
+        email,
+        password: current,
+      });
+      if (verifyErr) {
+        throw new Error("รหัสผ่านปัจจุบันไม่ถูกต้อง");
+      }
+
+      const { error: updErr } = await supabase.auth.updateUser({ password: next });
+      if (updErr) throw updErr;
+
+      setMsg({ kind: "ok", text: "เปลี่ยนรหัสผ่านสำเร็จ ✓ ครั้งต่อไปให้ใช้รหัสผ่านใหม่" });
+      setCurrent("");
+      setNext("");
+      setConfirm("");
+    } catch (err) {
+      setMsg({
+        kind: "err",
+        text: err instanceof Error ? err.message : "เปลี่ยนรหัสผ่านไม่สำเร็จ",
+      });
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-10">
+      <div className="w-full max-w-sm space-y-6">
+        <div>
+          <Link to="/" className="text-xs text-muted-foreground hover:text-foreground">
+            ← กลับหน้าแรก
+          </Link>
+          <div className="mt-4 flex items-center gap-2">
+            {isAdmin && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                ● Root Admin
+              </span>
+            )}
+          </div>
+          <h1 className="mt-2 text-2xl font-semibold">บัญชีของคุณ</h1>
+          <p className="mt-1 font-mono text-xs text-muted-foreground">{email}</p>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
+          <h2 className="text-sm font-semibold">เปลี่ยนรหัสผ่าน</h2>
+          <form onSubmit={submit} className="space-y-3">
+            <input
+              type="password"
+              required
+              autoComplete="current-password"
+              placeholder="รหัสผ่านปัจจุบัน"
+              value={current}
+              onChange={(e) => setCurrent(e.target.value)}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            />
+            <input
+              type="password"
+              required
+              minLength={8}
+              autoComplete="new-password"
+              placeholder="รหัสผ่านใหม่ (อย่างน้อย 8 ตัว)"
+              value={next}
+              onChange={(e) => setNext(e.target.value)}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            />
+            <input
+              type="password"
+              required
+              minLength={8}
+              autoComplete="new-password"
+              placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง"
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            />
+            <button
+              type="submit"
+              disabled={busy}
+              className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
+            >
+              {busy ? "กำลังบันทึก..." : "บันทึกรหัสผ่านใหม่"}
+            </button>
+          </form>
+          {msg && (
+            <p
+              className={`text-xs ${
+                msg.kind === "ok" ? "text-primary" : "text-destructive"
+              }`}
+            >
+              {msg.text}
+            </p>
+          )}
+        </div>
+
+        <div className="flex gap-3">
+          {isAdmin && (
+            <button
+              onClick={onGoAdmin}
+              className="flex-1 rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
+            >
+              ไปหน้า Admin
+            </button>
+          )}
+          <button
+            onClick={onSignOut}
+            className="flex-1 rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
+          >
+            ออกจากระบบ
+          </button>
+        </div>
       </div>
     </div>
   );
