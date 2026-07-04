@@ -1,32 +1,34 @@
-## สถานะปัจจุบัน
-- ปุ่มลบรูปมีอยู่แล้วในหน้า `/admin` (hover ที่รูป → "ลบภาพนี้")
-- ตาราง `gallery_images` มีคอลัมน์ `sort_order` (integer) อยู่แล้ว แต่โค้ดยังเรียงตาม `created_at`
+## เป้าหมาย
+เพิ่ม Lightbox ในหน้า `/gallery` — คลิกที่รูปใดก็ได้เพื่อดูแบบขยายเต็มจอ พร้อมเลื่อนก่อน/ถัดไประหว่างรูปทั้งหมด
 
 ## สิ่งที่จะทำ
 
-### 1. เพิ่มระบบลากวางจัดเรียง (drag & drop sort) ใน `/admin`
-- ติดตั้ง `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities`
-- เปลี่ยน grid "ภาพในระบบ" ให้ใช้ `DndContext` + `SortableContext`
-- แต่ละการ์ดจะมี drag handle (ไอคอน ⋮⋮ มุมซ้ายบน) และมีปุ่มลบเดิมทำงานอยู่
-- ลากได้ทั้งเมาส์ (desktop) และแตะค้าง (mobile) — เปิด `PointerSensor` + `TouchSensor`
-- โหลด/แสดงเรียงตาม `sort_order ASC, created_at DESC`
+### 1. รวมรูปทั้งหมดเป็นลิสต์เดียว (flat list)
+รวม `uploaded` + shots ของทุก `CATEGORIES` เข้าเป็น array เดียว `{ src, title?, caption?, category }[]` สำหรับให้ Lightbox หา index ก่อน/ถัดไปได้
 
-### 2. บันทึกลำดับลง DB
-- หลังจบการลาก อัปเดต state ทันที (optimistic) แล้วยิง `UPDATE gallery_images SET sort_order=? WHERE id=?` เป็นชุด
-- ใช้เลขห่าง 10 (10, 20, 30…) เพื่อให้แทรกกลางได้ง่าย
-- ถ้าล้มเหลว → alert + reload จาก DB
+### 2. สร้าง `<Lightbox />` component ใหม่ในไฟล์เดียวกัน
+- Overlay เต็มจอ พื้นหลังดำ 95% + backdrop blur
+- แสดงรูปกลางจอ (object-contain, จำกัด max-h-[90vh])
+- แสดง caption + category ด้านล่าง
+- ปุ่ม **← ก่อนหน้า / ถัดไป →** ที่ขอบซ้าย-ขวา + ปุ่ม **✕ ปิด** มุมขวาบน
+- ตัวนับ `n / total` มุมซ้ายบน
+- คีย์บอร์ด: `←` `→` เลื่อน, `Esc` ปิด (วนลูป)
+- คลิกพื้นหลัง = ปิด, คลิกที่รูป = ไม่ปิด
+- แตะเลื่อน (swipe) ซ้าย/ขวาบนมือถือ
 
-### 3. ปรับปรุงเล็กน้อย
-- แทน `confirm()` ปุ่มลบยังใช้เหมือนเดิม (ผู้ใช้ไม่ได้ขอเปลี่ยน)
-- ปรับ Gallery หน้า `/gallery` ให้เรียงตาม `sort_order` ด้วย เพื่อให้ลำดับที่จัดใน admin สะท้อนบนหน้าเว็บ
+### 3. ทำให้ทุกรูปคลิกได้
+- `UploadedBlock` และ `CategoryBlock` เปลี่ยน `<figure>` เป็น `<button>` (หรือใส่ `onClick` + `cursor-zoom-in`)
+- ยกสถานะ `lightboxIndex` ไว้ที่ `GalleryPage` เพื่อให้ทุกบล็อกใช้ index จากลิสต์รวมชุดเดียวกัน
 
-### รายละเอียดเทคนิค
-- ไฟล์ที่แก้: `src/routes/_authenticated/admin.tsx`, `src/routes/gallery.tsx` (แค่แก้ `.order(...)`)
-- ไม่มีการเปลี่ยน schema (คอลัมน์มีอยู่แล้ว)
-- ไม่มีการสร้าง migration ใหม่
+### 4. ล็อก scroll ตอนเปิด lightbox
+เพิ่ม `document.body.style.overflow = "hidden"` ใน `useEffect`
+
+## ไฟล์ที่แก้
+`src/routes/gallery.tsx` (ไฟล์เดียว) — ไม่มี dependency ใหม่, ไม่มี migration
 
 ## ไม่ทำในรอบนี้
-- ระบบ bulk-select / bulk-delete
-- การแก้ caption/category inline (ยังต้องลบแล้วอัปโหลดใหม่)
+- Zoom/pinch-to-zoom ในรูป
+- Thumbnails strip ด้านล่าง
+- Deep-link URL ต่อรูป (`?photo=id`)
 
-แจ้งได้ถ้าอยากได้เพิ่ม
+บอกได้ถ้าอยากได้เพิ่ม

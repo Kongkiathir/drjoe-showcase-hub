@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import heroAsset from "@/assets/drjoe-hero.jpg.asset.json";
 import keynoteAsset from "@/assets/drjoe-keynote.jpg.asset.json";
@@ -360,10 +360,18 @@ const CATEGORIES: Category[] = [
   },
 ];
 
+type LightboxItem = {
+  src: string;
+  title?: string;
+  caption?: string;
+  category: string;
+};
+
 function GalleryPage() {
   const [uploaded, setUploaded] = useState<
     { id: string; url: string; caption: string | null; category: string }[]
   >(SEEDED_UPLOADS);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
     supabase
@@ -376,25 +384,66 @@ function GalleryPage() {
       });
   }, []);
 
+  const flat = useMemo<LightboxItem[]>(() => {
+    const up: LightboxItem[] = uploaded.map((u) => ({
+      src: u.url,
+      caption: u.caption ?? undefined,
+      category: u.category,
+    }));
+    const cats: LightboxItem[] = CATEGORIES.flatMap((c) =>
+      c.shots.map((s) => ({
+        src: s.src,
+        title: s.title,
+        caption: s.caption,
+        category: c.title,
+      })),
+    );
+    return [...up, ...cats];
+  }, [uploaded]);
+
+  const uploadedCount = uploaded.length;
+  const openAt = useCallback((i: number) => setLightboxIndex(i), []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopBar />
       <Hero />
       <main className="container-editorial pb-32">
-        {uploaded.length > 0 && <UploadedBlock images={uploaded} />}
-        {CATEGORIES.map((cat) => (
-          <CategoryBlock key={cat.slug} cat={cat} />
-        ))}
+        {uploaded.length > 0 && (
+          <UploadedBlock images={uploaded} onOpen={(i) => openAt(i)} />
+        )}
+        {CATEGORIES.map((cat, catIdx) => {
+          const offset =
+            uploadedCount +
+            CATEGORIES.slice(0, catIdx).reduce((n, c) => n + c.shots.length, 0);
+          return (
+            <CategoryBlock
+              key={cat.slug}
+              cat={cat}
+              onOpen={(i) => openAt(offset + i)}
+            />
+          );
+        })}
       </main>
       <Footer />
+      {lightboxIndex !== null && (
+        <Lightbox
+          items={flat}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onChange={setLightboxIndex}
+        />
+      )}
     </div>
   );
 }
 
 function UploadedBlock({
   images,
+  onOpen,
 }: {
   images: { id: string; url: string; caption: string | null; category: string }[];
+  onOpen: (i: number) => void;
 }) {
   return (
     <section id="latest" className="pt-24 scroll-mt-24">
@@ -410,10 +459,13 @@ function UploadedBlock({
       </h2>
       <div className="mt-2 text-muted-foreground">อัปเดตล่าสุด</div>
       <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {images.map((img) => (
-          <figure
+        {images.map((img, i) => (
+          <button
+            type="button"
             key={img.id}
-            className="group relative overflow-hidden rounded-lg border border-border bg-card aspect-square"
+            onClick={() => onOpen(i)}
+            className="group relative overflow-hidden rounded-lg border border-border bg-card aspect-square cursor-zoom-in text-left focus:outline-none focus:ring-2 focus:ring-primary"
+            aria-label={img.caption ?? "เปิดดูรูป"}
           >
             <img
               src={img.url}
@@ -432,7 +484,7 @@ function UploadedBlock({
                 </figcaption>
               </>
             )}
-          </figure>
+          </button>
         ))}
       </div>
     </section>
@@ -503,7 +555,13 @@ function Hero() {
   );
 }
 
-function CategoryBlock({ cat }: { cat: Category }) {
+function CategoryBlock({
+  cat,
+  onOpen,
+}: {
+  cat: Category;
+  onOpen: (i: number) => void;
+}) {
   return (
     <section id={cat.slug} className="pt-24 scroll-mt-24">
       <div className="flex items-baseline gap-4 mb-3">
@@ -523,13 +581,16 @@ function CategoryBlock({ cat }: { cat: Category }) {
 
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:auto-rows-[280px]">
         {cat.shots.map((s, i) => (
-          <figure
+          <button
+            type="button"
             key={i}
+            onClick={() => onOpen(i)}
             className={[
-              "group relative overflow-hidden rounded-lg border border-border bg-card",
+              "group relative overflow-hidden rounded-lg border border-border bg-card cursor-zoom-in text-left focus:outline-none focus:ring-2 focus:ring-primary",
               s.wide ? "md:col-span-2" : "",
               s.tall ? "md:row-span-2" : "",
             ].join(" ")}
+            aria-label={s.title}
           >
             <img
               src={s.src}
@@ -547,10 +608,129 @@ function CategoryBlock({ cat }: { cat: Category }) {
                 {s.caption}
               </div>
             </figcaption>
-          </figure>
+          </button>
         ))}
       </div>
     </section>
+  );
+}
+
+function Lightbox({
+  items,
+  index,
+  onClose,
+  onChange,
+}: {
+  items: LightboxItem[];
+  index: number;
+  onClose: () => void;
+  onChange: (i: number) => void;
+}) {
+  const total = items.length;
+  const item = items[index];
+  const touchStartX = useRef<number | null>(null);
+
+  const go = useCallback(
+    (delta: number) => onChange((index + delta + total) % total),
+    [index, total, onChange],
+  );
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      else if (e.key === "ArrowLeft") go(-1);
+      else if (e.key === "ArrowRight") go(1);
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [go, onClose]);
+
+  if (!item) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="ดูรูปแบบขยาย"
+      onClick={onClose}
+      onTouchStart={(e) => {
+        touchStartX.current = e.touches[0]?.clientX ?? null;
+      }}
+      onTouchEnd={(e) => {
+        if (touchStartX.current === null) return;
+        const dx = (e.changedTouches[0]?.clientX ?? 0) - touchStartX.current;
+        touchStartX.current = null;
+        if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+      }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-10"
+    >
+      <div className="absolute top-4 left-4 mono text-xs text-white/70">
+        {index + 1} / {total}
+      </div>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label="ปิด"
+        className="absolute top-3 right-3 z-10 rounded-full bg-white/10 hover:bg-white/20 text-white h-10 w-10 flex items-center justify-center text-lg"
+      >
+        ✕
+      </button>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          go(-1);
+        }}
+        aria-label="ก่อนหน้า"
+        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/10 hover:bg-white/20 text-white h-11 w-11 flex items-center justify-center text-xl"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          go(1);
+        }}
+        aria-label="ถัดไป"
+        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/10 hover:bg-white/20 text-white h-11 w-11 flex items-center justify-center text-xl"
+      >
+        ›
+      </button>
+      <img
+        src={item.src}
+        alt={item.title ?? item.caption ?? ""}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[85vh] max-w-full object-contain select-none"
+        draggable={false}
+      />
+      {(item.title || item.caption) && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="mt-4 max-w-2xl text-center text-white/90"
+        >
+          <div className="mono text-[10px] text-primary tracking-widest uppercase">
+            {item.category}
+          </div>
+          {item.title && (
+            <div className="font-display text-lg mt-1">{item.title}</div>
+          )}
+          {item.caption && (
+            <div className="text-xs text-white/70 mt-1 leading-relaxed">
+              {item.caption}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
