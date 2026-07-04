@@ -369,6 +369,7 @@ function GalleryPage() {
     supabase
       .from("gallery_images")
       .select("id,url,caption,category")
+      .order("sort_order", { ascending: true })
       .order("created_at", { ascending: false })
       .then(({ data }) => {
         if (data && data.length) setUploaded([...data, ...SEEDED_UPLOADS]);
