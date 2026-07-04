@@ -239,6 +239,44 @@ function AdminPage() {
     navigate({ to: "/auth" });
   }
 
+  if (isAdmin === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background text-sm text-muted-foreground">
+        กำลังตรวจสอบสิทธิ์…
+      </div>
+    );
+  }
+
+  if (isAdmin === false) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+        <div className="w-full max-w-md rounded-lg border border-destructive/40 bg-destructive/5 p-6 text-center space-y-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-xs font-medium text-destructive">
+            🔒 Access Denied
+          </div>
+          <h1 className="text-lg font-semibold">เฉพาะ Root Admin เท่านั้น</h1>
+          <p className="text-sm text-muted-foreground">
+            บัญชี <span className="font-mono">{userEmail}</span> ไม่ได้รับสิทธิ์เข้าถึงหน้านี้
+          </p>
+          <div className="flex justify-center gap-3 pt-2">
+            <Link
+              to="/"
+              className="rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
+            >
+              กลับหน้าแรก
+            </Link>
+            <button
+              onClick={signOut}
+              className="rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              ออกจากระบบ
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="border-b border-border">
@@ -249,22 +287,25 @@ function AdminPage() {
             </Link>
             <h1 className="mt-1 text-xl font-semibold">Admin · Gallery Upload</h1>
           </div>
-          <button
-            onClick={signOut}
-            className="text-xs text-muted-foreground hover:text-foreground"
-          >
-            ออกจากระบบ
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex flex-col items-end text-right">
+              <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                ● Root Admin
+              </span>
+              <span className="mt-1 font-mono text-[11px] text-muted-foreground">{userEmail}</span>
+            </div>
+            <button
+              onClick={signOut}
+              className="text-xs text-muted-foreground hover:text-foreground"
+            >
+              ออกจากระบบ
+            </button>
+          </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-8 space-y-8">
-        {isAdmin === false && (
-          <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm">
-            บัญชีนี้ยังไม่ได้รับสิทธิ์แอดมิน — ติดต่อ Lovable เพื่อรันคำสั่งเพิ่มสิทธิ์
-            ให้กับอีเมลของคุณ (โพสต์อีเมลกลับมาในแชท)
-          </div>
-        )}
+
 
         <section>
           <div
