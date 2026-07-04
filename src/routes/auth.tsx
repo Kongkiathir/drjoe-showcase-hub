@@ -180,36 +180,76 @@ function SignedInPanel({
   onSignOut: () => void | Promise<void>;
   onGoAdmin: () => void;
 }) {
+  if (!isAdmin) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
+        <div className="w-full max-w-lg rounded-lg border border-destructive/40 bg-destructive/5 p-6 space-y-5">
+          <span className="inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-3 py-1 text-xs font-medium text-destructive">
+            🔒 ไม่มีสิทธิ์เข้าถึง (Access Denied)
+          </span>
+          <div className="space-y-2">
+            <h1 className="text-lg font-semibold">บัญชีนี้ยังไม่ได้รับสิทธิ์ Admin</h1>
+            <p className="text-sm text-muted-foreground">
+              คุณเข้าสู่ระบบด้วย{" "}
+              <span className="font-mono text-foreground">{email}</span>{" "}
+              แต่บัญชีนี้ไม่มีสิทธิ์เข้าหน้า admin
+            </p>
+          </div>
+          <div className="rounded-md border border-border bg-card p-4 space-y-2 text-xs text-muted-foreground">
+            <p className="text-sm font-semibold text-foreground">ต้องทำอะไรต่อ?</p>
+            <ol className="list-decimal space-y-1 pl-5">
+              <li>
+                ตรวจสอบว่าอีเมลตรงกับ{" "}
+                <span className="font-mono text-foreground">ROOT_ADMIN_EMAIL</span>{" "}
+                หรือไม่ — ถ้าไม่ตรง ให้ออกจากระบบและเข้าใหม่
+              </li>
+              <li>
+                ถ้าอีเมลถูกแล้ว ให้ใช้ส่วน{" "}
+                <span className="font-medium text-foreground">🔑 ยืนยันสิทธิ์ Root Admin</span>{" "}
+                ด้านล่างด้วย{" "}
+                <span className="font-mono text-foreground">ROOT_ADMIN_BOOTSTRAP_TOKEN</span>
+              </li>
+            </ol>
+          </div>
+          <div className="flex flex-wrap justify-end gap-3">
+            <Link
+              to="/"
+              className="rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
+            >
+              กลับหน้าแรก
+            </Link>
+            <button
+              onClick={onSignOut}
+              className="rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              ออกจากระบบ
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Admins are auto-redirected to /admin by the effect in AuthPage.
+  // This fallback shows briefly during the redirect.
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4 py-10">
-      <div className="w-full max-w-sm space-y-6">
-        <div>
-          <Link to="/" className="text-xs text-muted-foreground hover:text-foreground">
-            ← กลับหน้าแรก
-          </Link>
-          <div className="mt-4 flex items-center gap-2">
-            {isAdmin && (
-              <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                ● Root Admin
-              </span>
-            )}
-          </div>
-          <h1 className="mt-2 text-2xl font-semibold">บัญชีของคุณ</h1>
-          <p className="mt-1 font-mono text-xs text-muted-foreground">{email}</p>
-        </div>
-
-        <div className="flex gap-3">
-          {isAdmin && (
-            <button
-              onClick={onGoAdmin}
-              className="flex-1 rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
-            >
-              ไปหน้า Admin
-            </button>
-          )}
+      <div className="w-full max-w-sm space-y-6 text-center">
+        <span className="inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+          ● Root Admin
+        </span>
+        <h1 className="text-2xl font-semibold">กำลังพาไปหน้า Admin…</h1>
+        <p className="font-mono text-xs text-muted-foreground">{email}</p>
+        <div className="flex justify-center gap-3">
+          <button
+            onClick={onGoAdmin}
+            className="rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90"
+          >
+            ไปหน้า Admin
+          </button>
           <button
             onClick={onSignOut}
-            className="flex-1 rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
+            className="rounded-md border border-border px-4 py-2 text-xs hover:bg-accent/10"
           >
             ออกจากระบบ
           </button>
@@ -218,6 +258,7 @@ function SignedInPanel({
     </div>
   );
 }
+
 
 
 function BootstrapPanel({ onDone }: { onDone: (email: string) => void }) {
