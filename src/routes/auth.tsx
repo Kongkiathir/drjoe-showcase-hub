@@ -173,6 +173,7 @@ function SignedInPanel({
   onSignOut: () => void | Promise<void>;
   onGoAdmin: () => void;
 }) {
+  const [showChange, setShowChange] = useState(false);
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
   const [confirm, setConfirm] = useState("");
