@@ -7,6 +7,10 @@ export const Route = createFileRoute("/auth")({
     meta: [
       { title: "Admin Login | Dr. Joe" },
       { name: "description", content: "Admin sign-in for Dr. Joe's site." },
+      { property: "og:title", content: "Admin Login | Dr. Joe" },
+      { property: "og:description", content: "Admin sign-in for Dr. Joe's site." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),

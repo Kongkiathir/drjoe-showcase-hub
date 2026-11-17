@@ -225,6 +225,8 @@ export const Route = createFileRoute("/gallery")({
         content:
           "Visual archive across broadcast, THAI FIGHT, podcast, stage and production.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: GalleryPage,

@@ -33,6 +33,16 @@ const talkshowImg = talkshowAsset.url;
 
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Dr. Joe · ดร.นพรัตน์ พุทธรัตนมณี" },
+      { name: "description", content: "ประวัติและผลงาน ดร.นพรัตน์ พุทธรัตนมณี ผู้บริหาร THAI FIGHT, Originals Studio และผู้ก่อตั้ง IDOL GAMES" },
+      { property: "og:title", content: "Dr. Joe · ดร.นพรัตน์ พุทธรัตนมณี" },
+      { property: "og:description", content: "ประวัติและผลงานด้านมวยไทย สื่อ ความบันเทิง และนวัตกรรมของ ดร.โจ" },
+      { property: "og:type", content: "profile" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 

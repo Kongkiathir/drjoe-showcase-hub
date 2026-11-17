@@ -25,6 +25,11 @@ export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
       { title: "Admin · Gallery Upload | Dr. Joe" },
+      { name: "description", content: "Manage Dr. Joe's gallery images and upload order." },
+      { property: "og:title", content: "Admin · Gallery Upload | Dr. Joe" },
+      { property: "og:description", content: "Manage Dr. Joe's gallery images and upload order." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),

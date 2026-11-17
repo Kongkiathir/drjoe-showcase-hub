@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -34,7 +35,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -108,8 +109,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก · This is the universe of Dr. Joe. · นี่คือจักรวาลของดร.โจ" },
       { property: "og:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก · This is the universe of Dr. Joe. · นี่คือจักรวาลของดร.โจ" },
       { name: "twitter:description", content: "จากคลังไฟต์ สู่ข้อมูลเชิงโครงสร้าง · จากประสบการณ์ สู่ปัญญา · จากมรดกมวยไทย สู่เทคโนโลยีกีฬาระดับโลก · This is the universe of Dr. Joe. · นี่คือจักรวาลของดร.โจ" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/uQ0etfvMzkM18fhrnWTOMjpSQSo1/social-images/social-1783060386785-279FFDC2-CC40-49DC-A950-70340E0E25C5.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/uQ0etfvMzkM18fhrnWTOMjpSQSo1/social-images/social-1783060386785-279FFDC2-CC40-49DC-A950-70340E0E25C5.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
